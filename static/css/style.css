@@ -1,4 +1,5 @@
 
+/*----- Navbar -----*/
 nav {
     background-color: black;
 }
@@ -15,8 +16,13 @@ nav .brand-logo {
     letter-spacing: 1px;
 }
 
-/* Media Queries */
+/*----- Home -----*/
+.heading {
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
 
+/*----- Media Queries -----*/
 @media screen and (min-width: 600px) {
     nav .brand-logo {
         font-size: 45px;
