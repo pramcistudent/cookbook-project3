@@ -39,8 +39,41 @@
     <script>
         $(document).ready(function(){
             $(".button-collapse").sideNav();
+            $('select').material_select();
+            
+            var delete_icon = '<i class="material-icons">delete</i></a></div></div>';
+            var ingredient_field = '<div class="row new-ingredient"> <div class="input-field col s11">' +
+                    '<input placeholder="50g butter" type="text" class="validate">' +
+                    '<label>Ingredient(s)</label></div>' +
+                    '<div class="col s1"><a class="btn-floating btn waves-effect waves-light grey" id="delete_ingredient">' + 
+                    delete_icon;
+            
+            var step_field = '<div class="row new-step"> <div class="input-field col s11">' +
+                    '<input placeholder="In a medium bowl.." type="text" class="validate">' +
+                    '<label>Step(s)</label></div>' +
+                    '<div class="col s1"><a class="btn-floating btn waves-effect waves-light grey" id="delete_step">' + 
+                    delete_icon;
+            
+            // add and remove ingredient
+            $("#add_ingredient").click(function() {
+                event.preventDefault();
+                $("#ingredients").append(ingredient_field);
+                Materialize.updateTextFields();
+            });
+            $("body").on("click","#delete_ingredient", function() {
+                $(this).parents(".new-ingredient").remove();
+            });
+            
+            // add and remove step
+            $("#add_step").click(function() {
+                event.preventDefault();
+                $("#steps").append(step_field);
+                Materialize.updateTextFields();
+            });
+            $("body").on("click","#delete_step", function() {
+                $(this).parents(".new-step").remove();
+            });
         });
     </script>
-
 </body>
-</html> 
+</html>

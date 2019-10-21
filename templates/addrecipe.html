@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4 class="heading">Add a Recipe</h4>
+<div class="container">
+    <div class="row">
+        <form action="" method="POST" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                <input placeholder="Easy chocolate cake" id="title" type="text" class="validate">
+                <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input placeholder="https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_chocolate_cake_31070_16x9.jpg" id="image_url" type="text" class="validate">
+                <label for="image_url">Image URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input placeholder="Rachel Manley" id="author" type="text" class="validate">
+                <label for="author">Author</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Soup</option>
+                        <option value="2">Dessert</option>
+                        <option value="3">Sandwiches</option>
+                        <option value="4">Salad</option>
+                    </select>
+                    <label>Dish Type</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">English</option>
+                        <option value="2">Chinese</option>
+                        <option value="3">Thai</option>
+                        <option value="4">Italian</option>
+                    </select>
+                    <label>Cuisine</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Milk</option>
+                        <option value="2">Eggs</option>
+                        <option value="3">Peanuts</option>
+                        <option value="4">Fish</option>
+                    </select>
+                    <label>Allergens</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                <input placeholder="20 mins" id="prep_time" type="text" class="validate">
+                <label for="prep_time">Preparation Time</label>
+                </div>
+                <div class="input-field col s6">
+                <input placeholder="60 mins" id="cook_time" type="text" class="validate">
+                <label for="cook_time">Cooking Time</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                <input placeholder="1 hrs 20 mins" id="total_time" type="text" class="validate">
+                <label for="total_time">Total Cooking Time</label>
+                </div>
+                <div class="input-field col s6">
+                <input placeholder="4" id="servings" type="text" class="validate">
+                <label for="servings">Servings</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                <input placeholder="Foolproof and really easy chocolate cake recipe." id="short_desc" type="text" class="validate">
+                <label for="short_desc">Short Description</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 flow-text">Ingredients</div>
+            </div>
+            <div id="ingredients">
+                <div class="row">
+                    <div class="input-field col s10 m11">
+                        <input placeholder="100g Sugar" id="ingredient" type="text" class="validate">
+                        <label for="ingredient">Ingredients</label>
+                    </div>
+                    <div class="col s2 m1">
+                        <a class="btn-floating btn waves-effect waves-light black" id="add_ingredient"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 flow-text">Method</div>
+            </div>
+            <div id="steps">
+                <div class="row">
+                    <div class="input-field col s10 m11">
+                        <input placeholder="Preheat oven to 350ºF. ..." id="step" type="text" class="validate">
+                        <label for="step">Cooking Steps</label>
+                    </div>
+                    <div class="col s2 m1">
+                        <a class="btn-floating btn waves-effect waves-light black" id="add_step"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button class="col s12 btn waves-effect waves-light" type="submit" name="action">Save Recipe</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
