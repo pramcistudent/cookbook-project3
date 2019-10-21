@@ -1,0 +1,24 @@
+
+nav {
+    background-color: black;
+}
+
+nav .brand-logo {
+    font-size: 25px;
+    word-spacing: 2px;
+    letter-spacing: 4px;
+}
+
+.nav-item {
+    text-transform: uppercase;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 600px) {
+    nav .brand-logo {
+        font-size: 45px;
+    }
+}
