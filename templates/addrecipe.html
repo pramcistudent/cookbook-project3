@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %}{% block content %}
+
 <h4 class="heading">Add a Recipe</h4>
 <div class="container">
     <div class="row">
@@ -7,13 +7,7 @@
             <div class="row">
                 <div class="input-field col s12">
                 <input placeholder="Easy chocolate cake" id="title" type="text" class="validate">
-                <label for="title">Title</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                <input placeholder="https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_chocolate_cake_31070_16x9.jpg" id="image_url" type="text" class="validate">
-                <label for="image_url">Image URL</label>
+                <label for="recipe_title">Title</label>
                 </div>
             </div>
             <div class="row">
@@ -24,19 +18,19 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Soup</option>
-                        <option value="2">Dessert</option>
-                        <option value="3">Sandwiches</option>
-                        <option value="4">Salad</option>
-                    </select>
-                    <label>Dish Type</label>
+                <input placeholder="https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_chocolate_cake_31070_16x9.jpg" id="recipe_image_url" type="text" class="validate">
+                <label for="recipe_image_url">Image URL</label>
+                </div>
+            </div>
+             <div class="row">
+                <div class="input-field col s12">
+                <input placeholder="Foolproof and really easy chocolate cake recipe." id="short_desc" type="text" class="validate">
+                <label for="recipe_short_description">Recipe Short Description</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select>
+                    <select id="cuisine_name">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1">English</option>
                         <option value="2">Chinese</option>
@@ -48,7 +42,19 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select>
+                    <select id="dish_type">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Soup</option>
+                        <option value="2">Dessert</option>
+                        <option value="3">Sandwiches</option>
+                        <option value="4">Salad</option>
+                    </select>
+                    <label>Dish Type</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select id="allergen_name">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1">Milk</option>
                         <option value="2">Eggs</option>
@@ -60,12 +66,12 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                <input placeholder="20 mins" id="prep_time" type="text" class="validate">
-                <label for="prep_time">Preparation Time</label>
+                <input placeholder="20 mins" id="recipe_prep_time" type="text" class="validate">
+                <label for="recipe_prep_time">Preparation Time</label>
                 </div>
                 <div class="input-field col s6">
-                <input placeholder="60 mins" id="cook_time" type="text" class="validate">
-                <label for="cook_time">Cooking Time</label>
+                <input placeholder="60 mins" id="recipe_cook_time" type="text" class="validate">
+                <label for="recipe_cook_time">Cooking Time</label>
                 </div>
             </div>
             <div class="row">
@@ -74,23 +80,17 @@
                 <label for="total_time">Total Cooking Time</label>
                 </div>
                 <div class="input-field col s6">
-                <input placeholder="4" id="servings" type="text" class="validate">
-                <label for="servings">Servings</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                <input placeholder="Foolproof and really easy chocolate cake recipe." id="short_desc" type="text" class="validate">
-                <label for="short_desc">Short Description</label>
+                <input placeholder="4" id="recipe_serves" type="text" class="validate">
+                <label for="recipe_serves">Servings</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12 flow-text">Ingredients</div>
             </div>
-            <div id="ingredients">
+            <div id="recipe_ingredients">
                 <div class="row">
                     <div class="input-field col s10 m11">
-                        <input placeholder="100g Sugar" id="ingredient" type="text" class="validate">
+                        <input placeholder="one per line" id="ingredient" type="text" class="validate">
                         <label for="ingredient">Ingredients</label>
                     </div>
                     <div class="col s2 m1">
@@ -101,11 +101,11 @@
             <div class="row">
                 <div class="col s12 flow-text">Method</div>
             </div>
-            <div id="steps">
+            <div id="recipe_steps">
                 <div class="row">
                     <div class="input-field col s10 m11">
-                        <input placeholder="Preheat oven to 350ºF. ..." id="step" type="text" class="validate">
-                        <label for="step">Cooking Steps</label>
+                        <input placeholder="one per line" id="step" type="text" class="validate">
+                        <label>Cooking Steps</label>
                     </div>
                     <div class="col s2 m1">
                         <a class="btn-floating btn waves-effect waves-light black" id="add_step"><i class="material-icons">add</i></a>

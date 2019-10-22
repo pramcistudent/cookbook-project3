@@ -56,8 +56,7 @@
             
             // add and remove ingredient
             $("#add_ingredient").click(function() {
-                event.preventDefault();
-                $("#ingredients").append(ingredient_field);
+                $("#recipe_ingredients").append(ingredient_field);
                 Materialize.updateTextFields();
             });
             $("body").on("click","#delete_ingredient", function() {
@@ -66,8 +65,7 @@
             
             // add and remove step
             $("#add_step").click(function() {
-                event.preventDefault();
-                $("#steps").append(step_field);
+                $("#recipe_steps").append(step_field);
                 Materialize.updateTextFields();
             });
             $("body").on("click","#delete_step", function() {
