@@ -1,26 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <h4 class="heading">All Recipes</h4>
-   <div class="row">
-      {% for dish in dishes %}
-      <div class="col s8 offset-s2 m3">
-         <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-               <img class="activator" src="{{dish.dish_image}}">
-            </div>
-            <div class="card-content">
-               <span class="card-title activator grey-text text-darken-4">{{dish.dish_type}}<i class="material-icons right">more_vert</i></span>
-               <p><a href="#">This is a link</a></p>
-            </div>
-            <div class="card-reveal">
-               <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>{{dish.dish_type}}</span>
-               <p>{{dish.dish_description}}</p>
-            </div>
-         </div>
-      </div>
-      {% endfor %}
-   </div>
-
-        
+{% for recipe in recipes %}
+<h5>Recipe</h5>
+    {{recipe.recipe_title}}
+    {{recipe.recipe_image_url}}
+    {{recipe.recipe_short_description}}
+    {{recipe.recipe_prep_time}}
+    {{recipe.recipe_cook_time}}
+    {{recipe.total_time}}
+    {{recipe.recipe_serves}}
+    {% for items in recipe.recipe_ingredients %}
+    {{items}}<br>
+    {% endfor %}
+    {% for items in recipe.recipe_steps %}
+    {{items}}<br>
+    {% endfor %}
+{% endfor %}
 {% endblock %}

@@ -3,7 +3,7 @@
 <h4 class="heading">Add a Recipe</h4>
 <div class="container">
     <div class="row">
-        <form action="" method="POST" class="col s12">
+        <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
                 <input placeholder="Easy chocolate cake" id="recipe_title" name="recipe_title" type="text" class="validate">
@@ -12,20 +12,14 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input placeholder="Rachel Manley" id="author_name" name="author_name" type="text" class="validate">
-                <label for="author">Author</label>
+                <textarea placeholder="Foolproof and really easy chocolate cake recipe." id="recipe_short_description" class="materialize-textarea"></textarea>
+                <label for="recipe_short_description">Recipe Short Description</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input placeholder="https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/easy_chocolate_cake_31070_16x9.jpg" id="recipe_image_url" type="text" class="validate">
+                <input placeholder="Paste the image URL here" id="recipe_image_url" type="text" class="validate">
                 <label for="recipe_image_url">Image URL</label>
-                </div>
-            </div>
-             <div class="row">
-                <div class="input-field col s12">
-                <input placeholder="Foolproof and really easy chocolate cake recipe." id="recipe_short_description" type="text" class="validate">
-                <label for="recipe_short_description">Recipe Short Description</label>
                 </div>
             </div>
             <div class="row">
@@ -36,7 +30,7 @@
                             <option value="{{cuisine.cuisine_name}}" >{{cuisine.cuisine_name}}</option>
                         {% endfor %}
                     </select>
-                    <label>Cuisine</label>
+                    <label for="cuisine_name">Cuisine</label>
                 </div>
             </div>
             <div class="row">
@@ -47,7 +41,7 @@
                             <option value="{{dish.dish_type}}">{{dish.dish_type}}</option>
                         {% endfor %}
                     </select>
-                    <label>Dish Type</label>
+                    <label for="dish_type">Dish Type</label>
                 </div>
             </div>
             <div class="row">
@@ -58,7 +52,7 @@
                             <option value="{{allergen.allergen_name}}">{{allergen.allergen_name}}</option>
                         {% endfor %}
                     </select>
-                    <label>Allergens</label>
+                    <label for="allergen_name">Allergens</label>
                 </div>
             </div>
             <div class="row">
@@ -101,8 +95,8 @@
             <div id="recipe_steps">
                 <div class="row">
                     <div class="input-field col s10 m11">
-                        <input placeholder="one per line" id="step" type="text" class="validate">
-                        <label>Cooking Steps</label>
+                        <input placeholder="one per line" id="recipe_steps" name="recipe_steps" class="materialize-textarea"></textarea>
+                        <label for="recipe_steps">Cooking Steps</label>
                     </div>
                     <div class="col s2 m1">
                         <a class="btn-floating btn waves-effect waves-light black" id="add_step"><i class="material-icons">add</i></a>
@@ -110,7 +104,7 @@
                 </div>
             </div>
             <div class="row">
-                <button class="col s12 btn waves-effect waves-light" type="submit" name="action">Save Recipe</button>
+                <button class="col s12 btn waves-effect waves-light" type="submit">Save Recipe</button>
             </div>
         </form>
     </div>
