@@ -31,11 +31,10 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="cuisine_name" name="cuisine_name">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">English</option>
-                        <option value="2">Chinese</option>
-                        <option value="3">Thai</option>
-                        <option value="4">Italian</option>
+                        <option value="" disabled selected>Cuisine</option>
+                        {% for cuisine in cuisines %}
+                            <option value="{{cuisine.cuisine_name}}" >{{cuisine.cuisine_name}}</option>
+                        {% endfor %}
                     </select>
                     <label>Cuisine</label>
                 </div>
@@ -43,11 +42,10 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="dish_type" name="dish_type">
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Soup</option>
-                        <option value="2">Dessert</option>
-                        <option value="3">Sandwiches</option>
-                        <option value="4">Salad</option>
+                        <option value="" disabled selected>Dish Type</option>
+                        {% for dish in dishes %}
+                            <option value="{{dish.dish_type}}">{{dish.dish_type}}</option>
+                        {% endfor %}
                     </select>
                     <label>Dish Type</label>
                 </div>
@@ -55,7 +53,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <select id="allergen_name" name="allergen_name">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected>Allergen</option>
                         {% for allergen in allergens %}
                             <option value="{{allergen.allergen_name}}">{{allergen.allergen_name}}</option>
                         {% endfor %}
