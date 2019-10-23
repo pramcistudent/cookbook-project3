@@ -16,29 +16,55 @@ def all_recipes():
     
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template("addrecipe.html")
+    return render_template("addrecipe.html",
+    cuisines=mongo.db.cuisines.find(),
+    dishes=mongo.db.dishes.find(),
+    allergens=mongo.db.allergens.find())
 
-doc= {}
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    doc ={}
     data = request.form.items()
-    all_ingred = [];
-    all_steps = [];
+    all_ingred = request.form.getlist('ingred')
+    all_steps = request.form.getlist('steps')
+    all_allergens = request.form.getlist("allergen_name")
     for k, v in data: 
-        if k.startswith('ing'):
+        if k == "ingred":
             doc["recipe_ingredients"]=all_ingred
-            all_ingred.append(v)
-        elif k.startswith('step'):
+        elif k == "steps":
             doc["recipe_steps"]=all_steps
-            all_steps.append(v)
-        else:
+        elif k == "allergen_name":
+            doc["allergen_name"] = all_allergens
+        else:    
             doc[k]= v
 
     recipe = doc
     recipes=mongo.db.recipes 
     recipes.insert_one(recipe)
+    insert_cuisine()
+    insert_dish()
     return redirect(url_for('all_recipes'))
+
+def insert_cuisine():
+    doc2 ={}
+    data = request.form.items()
+    for k, v in data:
+        if k == 'cuisine_name':
+            doc2[k] = v
+            cuisine = doc2
+            cuisines=mongo.db.cuisines
+            cuisines.insert_one(cuisine)
+
+def insert_dish():
+    doc3 ={}
+    data = request.form.items()
+    for k, v in data:
+        if k == 'dish_type':
+            doc3[k] = v
+            dish = doc3
+            dishes=mongo.db.dishes
+            dishes.insert_one(dish)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 

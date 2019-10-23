@@ -32,6 +32,10 @@
                     </select>
                     <label for="cuisine_name">Cuisine</label>
                 </div>
+                <div class="input-field col s12 m6" >
+                    <label for="add_cuisine">Other</label>
+                    <input placeholder="Enter Cuisine name" id="add_cuisine" name="cuisine_name" type="text" class="validate">
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
@@ -43,10 +47,14 @@
                     </select>
                     <label for="dish_type">Dish Type</label>
                 </div>
+                <div class="input-field col s12 m6" >
+                    <label for="add_dish">Other</label>
+                    <input placeholder="Enter Dish name" id="add_dish" name="dish_type" type="text" class="validate">
+                </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="allergen_name" name="allergen_name">
+                    <select id="allergen_name" name="allergen_name" multiple>
                         <option value="" disabled selected>Allergen</option>
                         {% for allergen in allergens %}
                             <option value="{{allergen.allergen_name}}">{{allergen.allergen_name}}</option>
@@ -81,7 +89,7 @@
             <div id="recipe_ingredients" name="recipe_ingredients">
                 <div class="row">
                     <div class="input-field col s10 m11">
-                        <input placeholder="one per line" id="recipe_ingredients" name="ing1" type="text" class="validate">
+                        <input placeholder="one per line" id="recipe_ingredients" name="ingred" type="text" class="validate">
                         <label for="recipe_ingredients">Ingredients</label>
                     </div>
                     <div class="col s2 m1">
@@ -95,7 +103,7 @@
             <div id="recipe_steps">
                 <div class="row">
                     <div class="input-field col s10 m11">
-                        <input placeholder="one per line" id="recipe_steps" name="step1" class="materialize-textarea"></textarea>
+                        <input placeholder="one per line" id="recipe_steps" name="steps" class="materialize-textarea"></textarea>
                         <label for="recipe_steps">Cooking Steps</label>
                     </div>
                     <div class="col s2 m1">
