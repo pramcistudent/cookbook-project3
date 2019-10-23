@@ -58,7 +58,8 @@ def login():
 
 @app.route('/login')
 def guest_user():
-    return render_template('home.html', user_status = Login)
+    recipes=mongo.db.recipes.find()
+    return render_template('home.html', user_status = Login, recipes=recipes)
 
 @app.route('/all_recipes')
 def all_recipes():
