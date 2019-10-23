@@ -1,18 +1,41 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session, Markup
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cookbook'
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI", 'mongodb://localhost')
-
+app.config['SECRET_KEY'] = '[R@ndom:-B]'
 mongo = PyMongo(app)
+
+success = Markup('<p>You are successfully registered</p>')
+failure = Markup('<p>Sorry that username already exists</p>')
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+@app.route('/register', methods=['POST'])
+def register():
+    fullname = request.form.get('fullname')
+    username = request.form.get('username')
+    users = mongo.db.users
+    registered = users.find_one({'username': username})
+    print registered
+    if registered is None:
+        session['username'] = username
+        users.insert_one({
+            'username': username,
+            'fullname': fullname
+        })
+        return render_template('index.html', success = success)
+    return render_template('index.html', failure = failure)
 
 @app.route('/')
 def all_recipes():
     recipes=mongo.db.recipes.find()
-    return render_template("index.html", recipes=recipes)
+    return render_template("home.html", recipes=recipes)
 
 
 @app.route('/add_recipe')

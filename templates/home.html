@@ -1,0 +1,20 @@
+{% extends 'base.html' %}{% block content %}
+<h4 class="heading">All Recipes</h4>
+{% for recipe in recipes %}
+<h5>Recipe</h5>
+    {{recipe.recipe_title}}
+    {{recipe.recipe_image_url}}
+    {{recipe.recipe_short_description}}
+    {{recipe.recipe_prep_time}}
+    {{recipe.recipe_cook_time}}
+    {{recipe.total_time}}
+    {{recipe.recipe_serves}}
+    {% for items in recipe.recipe_ingredients %}
+    {{items}}<br>
+    {% endfor %}
+    {% for items in recipe.recipe_steps %}
+    {{items}}<br>
+    {% endfor %}
+<a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">edit</i></a>    
+{% endfor %}
+{% endblock %} 

@@ -1,21 +1,62 @@
-{% extends 'base.html' %}
-{% block content %}
-<h4 class="heading">All Recipes</h4>
-{% for recipe in recipes %}
-<h5>Recipe</h5>
-    {{recipe.recipe_title}}
-    {{recipe.recipe_image_url}}
-    {{recipe.recipe_short_description}}
-    {{recipe.recipe_prep_time}}
-    {{recipe.recipe_cook_time}}
-    {{recipe.total_time}}
-    {{recipe.recipe_serves}}
-    {% for items in recipe.recipe_ingredients %}
-    {{items}}<br>
-    {% endfor %}
-    {% for items in recipe.recipe_steps %}
-    {{items}}<br>
-    {% endfor %}
-    <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">edit</i></a>
-{% endfor %}
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css" />
+    <!-- CSS/Materialize Framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Custom CSS Styles-->
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+</head>
+<body>
+    <h4 class="heading">Cookbook</h4>
+    <div class="container">
+        {{success}} {{failure}}
+        <div class="row">
+            <button class="col s12 btn waves-effect waves-light" type="submit">Guest User</button>
+        </div>
+        <div class="row">
+            <h5>Login</h5>
+            <form action="" method="POST" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Enter username" name="username" type="text" class="validate">
+                    <label>Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="col s12 btn waves-effect waves-light" type="submit">Sign In</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <h5>Register</h5>
+            <form action="{{url_for('register')}}" method="POST" class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Enter your full name" name="fullname" type="text" class="validate">
+                    <label>Full Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Enter username" name="username" type="text" class="validate">
+                    <label>Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="col s12 btn waves-effect waves-light" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('select').material_select();
+        })
+    </script>
+</body>
+</html> 
