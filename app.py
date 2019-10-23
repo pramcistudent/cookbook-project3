@@ -36,7 +36,7 @@ def register():
     return render_template('index.html', failure1 = failure1)
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/logout', methods=['POST'])
 def login():
     fullname = request.form.get('fullname')
     username = request.form.get('username')
@@ -56,7 +56,7 @@ def login():
         return render_template('home.html', user_status = Logout)
     return render_template('index.html', failure = failure2)
 
-@app.route('/guest_user')
+@app.route('/login')
 def guest_user():
     return render_template('home.html', user_status = Login)
 
