@@ -11,9 +11,10 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def all_recipes():
-    return render_template("index.html",
-    recipes=mongo.db.recipes.find())
-    
+    recipes=mongo.db.recipes.find()
+    return render_template("index.html", recipes=recipes)
+
+
 @app.route('/add_recipe')
 def add_recipe():
     return render_template("addrecipe.html",
@@ -24,12 +25,32 @@ def add_recipe():
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('editrecipe.html',  
-                        recipes =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
+                        recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
                         cuisines = mongo.db.cuisines.find(),
                         dishes = mongo.db.dishes.find(),
                         allergens = mongo.db.allergens.find())
                         
-                        
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
+def update_recipe(recipe_id):
+    recipe =  mongo.db.recipes
+    recipe.update( {'_id': ObjectId(recipe_id)},
+    {
+        'recipe_title':request.form.get('recipe_title'),
+        'recipe_short_description':request.form.get('recipe_short_description'),
+        'recipe_image_url': request.form.get('recipe_image_url'),
+        'cuisine_name': request.form.getlist('cuisine_name'),
+        'dish_type':request.form.getlist('dish_type'),
+        'allergen_name':request.form.getlist('allergen_name'),
+        'recipe_prep_time':request.form.get('recipe_prep_time'),
+        'recipe_cook_time':request.form.get('recipe_cook_time'),
+        'total_time':request.form.get('total_time'),
+        'recipe_serves':request.form.get('recipe_serves'),
+        'recipe_ingredients':request.form.getlist('ingred'),
+        'recipe_steps':request.form.getlist('steps'),
+    })
+    return redirect(url_for('all_recipes'))
+
+
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     doc ={}
