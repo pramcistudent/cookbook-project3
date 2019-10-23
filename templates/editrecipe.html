@@ -56,13 +56,11 @@
                     <select id="allergen_name" name="allergen_name" multiple>
                         <option value="" disabled selected>Choose Allergen</option>
                         {% for allergen in allergens %}
-                            {% for item in recipe.allergen_name %}
-                                {% if allergen.allergen_name == item %}
+                            {% if allergen.allergen_name in recipe.allergen_name %}
                             <option value="{{allergen.allergen_name}}" selected>{{allergen.allergen_name}}</option>
-                                {% else %}
+                            {% else %}
                             <option value="{{allergen.allergen_name}}">{{allergen.allergen_name}}</option>
-                                {% endif %}
-                            {% endfor %}
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <label for="allergen_name">Allergens</label>
