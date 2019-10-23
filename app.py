@@ -12,6 +12,8 @@ mongo = PyMongo(app)
 success = Markup('<p>You are successfully registered. Please login below.</p>')
 failure1 = Markup('<p>Sorry that username already exists</p>')
 failure2 = Markup('<p>Login failed. Incorrect username or/and password.</p>')
+Login = Markup('<i class="fas fa-sign-in-alt"></i> Login')
+Logout = Markup('<i class="fas fa-sign-out-alt"></i> Logout')
 
 @app.route('/')
 def index():
@@ -51,8 +53,12 @@ def login():
             'fullname': fullname,
             'password': password
         })
-        return redirect('all_recipes')
+        return render_template('home.html', user_status = Logout)
     return render_template('index.html', failure = failure2)
+
+@app.route('/guest_user')
+def guest_user():
+    return render_template('home.html', user_status = Login)
 
 @app.route('/all_recipes')
 def all_recipes():
