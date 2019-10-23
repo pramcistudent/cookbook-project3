@@ -18,11 +18,17 @@
         </div>
         <div class="row">
             <h5>Login</h5>
-            <form action="" method="POST" class="col s12">
+            <form action="{{url_for('login')}}" method="POST" class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                     <input placeholder="Enter username" name="username" type="text" class="validate">
                     <label>Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Enter password" name="password" type="text" class="validate">
+                    <label>Password</label>
                     </div>
                 </div>
                 <div class="row">
@@ -43,6 +49,12 @@
                     <div class="input-field col s12">
                     <input placeholder="Enter username" name="username" type="text" class="validate">
                     <label>Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                    <input placeholder="Enter password" name="password" type="text" class="validate">
+                    <label>Password</label>
                     </div>
                 </div>
                 <div class="row">

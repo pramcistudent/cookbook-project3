@@ -9,8 +9,9 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI", 'mongodb://localhost')
 app.config['SECRET_KEY'] = '[R@ndom:-B]'
 mongo = PyMongo(app)
 
-success = Markup('<p>You are successfully registered</p>')
-failure = Markup('<p>Sorry that username already exists</p>')
+success = Markup('<p>You are successfully registered. Please login below.</p>')
+failure1 = Markup('<p>Sorry that username already exists</p>')
+failure2 = Markup('<p>Login failed. Incorrect username or/and password.</p>')
 
 @app.route('/')
 def index():
@@ -20,19 +21,40 @@ def index():
 def register():
     fullname = request.form.get('fullname')
     username = request.form.get('username')
+    password = request.form.get('password')
     users = mongo.db.users
     registered = users.find_one({'username': username})
-    print registered
     if registered is None:
+        users.insert_one({
+            'username': username,
+            'fullname': fullname,
+            'password': password
+        })
+        return render_template('index.html', success = success)
+    return render_template('index.html', failure1 = failure1)
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    fullname = request.form.get('fullname')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    users = mongo.db.users
+    registered = users.find_one({
+        'username': username,
+        'password': password
+    })
+    if registered is not None:
         session['username'] = username
         users.insert_one({
             'username': username,
-            'fullname': fullname
+            'fullname': fullname,
+            'password': password
         })
-        return render_template('index.html', success = success)
-    return render_template('index.html', failure = failure)
+        return redirect('all_recipes')
+    return render_template('index.html', failure = failure2)
 
-@app.route('/')
+@app.route('/all_recipes')
 def all_recipes():
     recipes=mongo.db.recipes.find()
     return render_template("home.html", recipes=recipes)
