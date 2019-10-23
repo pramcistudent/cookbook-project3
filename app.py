@@ -21,7 +21,15 @@ def add_recipe():
     dishes=mongo.db.dishes.find(),
     allergens=mongo.db.allergens.find())
 
-
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    return render_template('editrecipe.html',  
+                        recipes =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
+                        cuisines = mongo.db.cuisines.find(),
+                        dishes = mongo.db.dishes.find(),
+                        allergens = mongo.db.allergens.find())
+                        
+                        
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     doc ={}

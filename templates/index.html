@@ -16,5 +16,6 @@
     {% for items in recipe.recipe_steps %}
     {{items}}<br>
     {% endfor %}
+    <a href="{{url_for('edit_recipe', recipe_id = recipes._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">edit</i></a>
 {% endfor %}
 {% endblock %}
