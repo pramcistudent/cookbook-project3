@@ -11,19 +11,51 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Cookbook</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i> Add recipe</a></li>
-                    <li><a href="{{url_for('index')}}" class="nav-item">{{user_status}}</a></li>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">Cookbook</a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
+                        <li><a href="{{url_for('index')}}" class="nav-item">{{user_status}}</a></li>
+                    </ul>
+                    <ul id="dishes2" class="dropdown-content">
+                      <li><a href="">Dish types</a></li>
+                    </ul>
+                    <ul id="cuisines2" class="dropdown-content">
+                      <li><a href="">Cuisines</a></li>
+                    </ul>
+                    <ul id="allergens2" class="dropdown-content">
+                      <li><a href="">Allergens</a></li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
+                        <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
+                        <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-out-alt"></i>{{user_status}}</a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="dishes2">Dish Types</a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="cuisines2">Cuisines</a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="allergens2">Allergens</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <nav class="filters">
+            <div class="nav-wrapper row">
+                <ul id="dishes1" class="dropdown-content">
+                    <li><a href="">Dish types</a></li>
                 </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i> Add recipe</a></li>
-                    <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-out-alt"></i> {{user_status}}</a></li>
+                <ul id="cuisines1" class="dropdown-content">
+                    <li><a href="">Cuisines</a></li>
+                </ul>    
+                <ul id="allergens1" class="dropdown-content">
+                    <li><a href="">Allergens</a></li>
+                </ul>
+                <ul class="hide-on-med-and-down col l9">
+                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='dishes1'>Dish Types</a></li>
+                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='cuisines1'>Cuisines</a></li>
+                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='allergens1'>Allergens</a></li>
                 </ul>
             </div>
         </nav>

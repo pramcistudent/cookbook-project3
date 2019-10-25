@@ -16,6 +16,14 @@ nav .brand-logo {
     letter-spacing: 1px;
 }
 
+.navbar-fixed {
+    z-index: 9999;
+}
+
+.filters {
+    background-color: black;
+}
+
 /*----- Home -----*/
 .heading {
     margin-bottom: 30px;
