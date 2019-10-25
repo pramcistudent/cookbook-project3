@@ -1,0 +1,43 @@
+{% extends 'base.html' %}{% block content %}
+
+<div class="container">
+    <div class="row section spacing">
+        <div class="col s12">
+            <div class="col s8 offset-s2 m5"><img class="recipe-img" src="{{recipe.recipe_image_url}}"></div>
+            <div class="col s8 offset-s2 m7">
+                <h5 class="small-heading">{{recipe.recipe_title}}</h5>
+                <p>
+                    <i class="material-icons">schedule</i> Preparation Time: {{recipe.recipe_prep_time}}<br>
+                    <i class="material-icons">schedule</i> Cook Time: {{recipe.recipe_cook_time}}<br>
+                    <i class="material-icons">schedule</i> Total Time: {{recipe.total_time}}<br>
+                    <i class="material-icons">local_dining</i> Servings: {{recipe.recipe_serves}}<br>
+                </p>
+                <p>
+                    <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating waves-effect waves-light black"><i class="material-icons">edit</i></a>
+                    <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="btn-floating waves-effect waves-light black"><i class="material-icons">delete</i></a>
+                    <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn-floating waves-effect waves-light black"><i class="material-icons">forward</i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row spacing">
+        <div class="col s12 m5 section">
+            <h5 class="small-heading center-text">Ingredients</h5>
+            <ul>
+                {% for items in recipe.recipe_ingredients %}
+                <li class="list-item-height center-text">{{items}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col s12 m1 white"></div>
+        <div class="col s12 m6 section">
+            <h5 class="small-heading center-text">Method</h5>
+            <ol>
+                {% for items in recipe.recipe_steps %}
+                <li class="list-item-height">{{items}}</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}
