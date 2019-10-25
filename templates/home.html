@@ -1,5 +1,22 @@
 {% extends 'base.html' %}{% block content %}
-<h4 class="heading">All Recipes</h4>
+<h4 class="heading">All Recipes ({{total_recipes}})</h4>
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="card small col m3">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{recipe.recipe_image_url}}">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>{{recipe.recipe_title}}</span>
+      <p>{{recipe.recipe_short_description}}</p>
+    </div>
+  </div>
+    {% endfor %}
+</div>
 {% for recipe in recipes %}
 <h5>Recipe</h5>
     {{recipe.recipe_title}}
@@ -15,6 +32,7 @@
     {% for items in recipe.recipe_steps %}
     {{items}}<br>
     {% endfor %}
-<a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">edit</i></a>    
+<a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">edit</i></a>
+<a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="btn-floating btn-large waves-effect waves-light black"><i class="material-icons">delete</i></a>
 {% endfor %}
 {% endblock %} 
