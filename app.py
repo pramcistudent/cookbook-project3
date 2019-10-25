@@ -49,11 +49,6 @@ def login():
     recipes=mongo.db.recipes.find()
     if registered is not None:
         session['username'] = username
-        users.insert_one({
-            'username': username,
-            'fullname': fullname,
-            'password': password
-        })
         return render_template('home.html', user_status = Logout, recipes=recipes)
     return render_template('index.html', failure = failure2)
 
