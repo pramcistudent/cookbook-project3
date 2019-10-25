@@ -126,6 +126,11 @@ def insert_recipe():
     recipes.insert_one(recipe)
     return redirect(url_for('all_recipes'))
 
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    recipe =  mongo.db.recipes
+    recipe.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('all_recipes')) 
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 
