@@ -1,19 +1,14 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request, session, Markup
+from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cookbook'
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI", 'mongodb://localhost')
-app.config['SECRET_KEY'] = '[R@ndom:-B]'
+app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
-success = Markup('<p>You are successfully registered. Please login below.</p>')
-failure1 = Markup('<p>Sorry that username already exists</p>')
-failure2 = Markup('<p>Login failed. Incorrect username or/and password.</p>')
-Login = Markup('<i class="fas fa-sign-in-alt"></i> Login')
-Logout = Markup('<i class="fas fa-sign-out-alt"></i> Logout')
 
 @app.route('/')
 def index():
@@ -32,8 +27,10 @@ def register():
             'fullname': fullname,
             'password': password
         })
+        success = True
         return render_template('index.html', success = success)
-    return render_template('index.html', failure1 = failure1)
+    success = False
+    return render_template('index.html', success = success)
 
 
 @app.route('/logout', methods=['POST'])
@@ -49,36 +46,41 @@ def login():
     recipes=mongo.db.recipes.find()
     if registered is not None:
         session['username'] = username
-        return render_template('home.html', user_status = Logout, recipes=recipes)
-    return render_template('index.html', failure = failure2)
+        login = True
+        return render_template('home.html', recipes=recipes, login=login)
+    login = False    
+    return render_template('index.html', login=login)
 
 @app.route('/login')
 def guest_user():
     dishes=mongo.db.dishes.find()
     recipes=mongo.db.recipes.find()
-    return render_template('home.html', user_status = Login, recipes=recipes)
+    return render_template('home.html', recipes=recipes)
+
+@app.route('/login')
+def logout():
+    session.clear()
+    return render_template('index.html')
 
 @app.route('/all_recipes')
 def all_recipes():
+    dishes=mongo.db.dishes.find()
     recipes=mongo.db.recipes.find()
     total_recipes=recipes.count()
-    return render_template("home.html", 
-    recipes=recipes, 
-    dishes=dishes, 
-    total_recipes=total_recipes)
+    return render_template("home.html", recipes=recipes, dishes=dishes, total_recipes=total_recipes, login=login)
 
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
 def the_recipe(recipe_id, recipe_title):
     recipes=mongo.db.recipes
     return render_template("recipe.html",
-                        recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}))
+                        recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}), login=login)
 
 @app.route('/add_recipe')
 def add_recipe():
     return render_template("addrecipe.html",
     cuisines=mongo.db.cuisines.find(),
     dishes=mongo.db.dishes.find(),
-    allergens=mongo.db.allergens.find())
+    allergens=mongo.db.allergens.find(), login=login)
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -86,7 +88,7 @@ def edit_recipe(recipe_id):
                         recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
                         cuisines = mongo.db.cuisines.find(),
                         dishes = mongo.db.dishes.find(),
-                        allergens = mongo.db.allergens.find())
+                        allergens = mongo.db.allergens.find(), login=login)
                         
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):

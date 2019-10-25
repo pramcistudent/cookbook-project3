@@ -7,7 +7,7 @@
     <!-- CSS/Materialize Framework -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS Styles-->
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 </head>
 <body>
     <header>
@@ -19,7 +19,16 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li><a href="{{url_for('index')}}" class="nav-item">{{user_status}}</a></li>
+                        <li>
+                            {% if session.username %}
+                            <a href="{{url_for('logout')}}" class="nav-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                            {% else %}
+                            <a href="{{url_for('index')}}" class="nav-item">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                            {% endif %}
+                            </a>
+                        </li>
                     </ul>
                     <ul id="dishes2" class="dropdown-content">
                       <li><a href="">Dish types</a></li>
@@ -33,7 +42,16 @@
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-out-alt"></i>{{user_status}}</a></li>
+                        <li> 
+                            {% if session.username %}
+                            <a href="{{url_for('logout')}}" class="nav-item">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                            {% else %}
+                            <a href="{{url_for('index')}}" class="nav-item">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                            {% endif %}
+                            </a>
+                        </li>
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="dishes2">Dish Types</a></li>
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="cuisines2">Cuisines</a></li>
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="allergens2">Allergens</a></li>
@@ -83,7 +101,7 @@
                     <div class="col s1"><a class="btn-floating btn waves-effect waves-light black" id="delete_step">
                     ${delete_icon}`;
                     
-                // add and remove ingredient
+            // add and remove ingredient
             $("#add_ingredient").click(function() {
                 $("#ingredients").append(ingredient_field);
                 Materialize.updateTextFields();

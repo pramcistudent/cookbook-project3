@@ -7,12 +7,19 @@
     <!-- CSS/Materialize Framework -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS Styles-->
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 </head>
 <body>
     <h4 class="heading">Cookbook</h4>
     <div class="container">
-        {{success}} {{failure}}
+        {% if success == True %}
+        <p>You are successfully registered. Please login below.</p>
+        {% elif success == False %}
+        <p>Sorry that username already exists</p>
+        {% elif  login == False %}
+        <p>Login failed. Incorrect username or/and password.</p>
+        {% endif %}
+        
         <div class="row">
             <a href="{{url_for('guest_user')}}" class="col s12 btn waves-effect waves-light" type="submit">Guest User</a>
         </div>
