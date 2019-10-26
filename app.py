@@ -10,16 +10,29 @@ app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
 
+recipes=mongo.db.recipes.find()
+dishes=mongo.db.dishes.find()
+cuisines=mongo.db.cuisines.find()
+allergens=mongo.db.allergens.find()
+total_recipes=recipes.count()
+
+
+users = mongo.db.users
+recipe =  mongo.db.recipes
+cuisine =  mongo.db.cuisines
+dish =  mongo.db.dishes
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
+
 
 @app.route('/register', methods=['POST'])
 def register():
     fullname = request.form.get('fullname')
     username = request.form.get('username')
     password = request.form.get('password')
-    users = mongo.db.users
     registered = users.find_one({'username': username})
     if registered is None:
         users.insert_one({
@@ -35,15 +48,9 @@ def register():
 
 @app.route('/logout', methods=['POST'])
 def login():
-    fullname = request.form.get('fullname')
     username = request.form.get('username')
     password = request.form.get('password')
-    users = mongo.db.users
-    registered = users.find_one({
-        'username': username,
-        'password': password
-    })
-    recipes=mongo.db.recipes.find()
+    registered = users.find_one({'username': username, 'password': password})
     if registered is not None:
         session['username'] = username
         login = True
@@ -51,46 +58,43 @@ def login():
     login = False    
     return render_template('index.html', login=login)
 
+
 @app.route('/guest_user')
 def guest_user():
     return redirect(url_for('all_recipes'))
+
 
 @app.route('/login')
 def logout():
     session.clear()
     return render_template('index.html')
 
+
 @app.route('/all_recipes')
 def all_recipes():
-    dishes=mongo.db.dishes.find()
-    recipes=mongo.db.recipes.find()
-    total_recipes=recipes.count()
     return render_template("home.html", recipes=recipes, dishes=dishes, total_recipes=total_recipes)
+
 
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
 def the_recipe(recipe_id, recipe_title):
-    recipes=mongo.db.recipes
     return render_template("recipe.html",
                         recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}))
 
+
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template("addrecipe.html",
-    cuisines=mongo.db.cuisines.find(),
-    dishes=mongo.db.dishes.find(),
-    allergens=mongo.db.allergens.find())
+    return render_template("addrecipe.html", cuisines=cuisines, dishes=dishes, allergens=allergens)
+
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('editrecipe.html',  
                         recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
-                        cuisines = mongo.db.cuisines.find(),
-                        dishes = mongo.db.dishes.find(),
-                        allergens = mongo.db.allergens.find())
-                        
+                        cuisines = cuisines, dishes = dishes, allergens = allergens)
+
+
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipe =  mongo.db.recipes
     recipe.update( {'_id': ObjectId(recipe_id)},
     {
         'recipe_author_name': session['username'],
@@ -127,16 +131,16 @@ def insert_recipe():
         else:    
             doc[k]= v
 
-    recipe = doc
-    recipes=mongo.db.recipes 
-    recipes.insert_one(recipe)
+    new_recipe = doc
+    recipes.insert_one(new_recipe)
     return redirect(url_for('all_recipes'))
+
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    recipe =  mongo.db.recipes
     recipe.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('all_recipes')) 
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 
