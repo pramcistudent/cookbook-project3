@@ -20,20 +20,4 @@
     </div>    
     {% endfor %}
 </div>
-{% for recipe in recipes %}
-<h5>Recipe</h5>
-    {{recipe.recipe_title}}
-    {{recipe.recipe_image_url}}
-    {{recipe.recipe_short_description}}
-    {{recipe.recipe_prep_time}}
-    {{recipe.recipe_cook_time}}
-    {{recipe.total_time}}
-    {{recipe.recipe_serves}}
-    {% for items in recipe.recipe_ingredients %}
-    {{items}}<br>
-    {% endfor %}
-    {% for items in recipe.recipe_steps %}
-    {{items}}<br>
-    {% endfor %}
-{% endfor %}
 {% endblock %} 

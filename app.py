@@ -10,10 +10,10 @@ app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
 # Variables
-users = mongo.db.users
-recipe =  mongo.db.recipes
-cuisine =  mongo.db.cuisines
-dish =  mongo.db.dishes
+# users = mongo.db.users
+# recipe =  mongo.db.recipes
+# cuisine =  mongo.db.cuisines
+# dish =  mongo.db.dishes
 
 # Login / Registration page
 @app.route('/')
@@ -69,16 +69,20 @@ def logout():
 @app.route('/all_recipes')
 def all_recipes():
     recipes=mongo.db.recipes.find()
+    cuisines =  mongo.db.cuisines.find()
     dishes=mongo.db.dishes.find()
     total_recipes=recipes.count()
-    return render_template("home.html", recipes=recipes, dishes=dishes, total_recipes=total_recipes)
+    return render_template("home.html", recipes=recipes, dishes=dishes, cuisines=cuisines, total_recipes=total_recipes)
 
 # Home page displaying all recipes
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
 def the_recipe(recipe_id, recipe_title):
-    recipes=mongo.db.recipes.find()
+    recipes=mongo.db.recipes
+    cuisines =  mongo.db.cuisines.find()
+    dishes = mongo.db.dishes.find()
     return render_template("recipe.html",
-                        recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}))
+                        recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}),
+                        cuisines=cuisines, dishes=dishes)
 
 # Display form to add a recipe
 @app.route('/add_recipe')
@@ -146,8 +150,19 @@ def insert_recipe():
 # Removes a recipe from DB
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
+    recipe = mongo.db.recipes
     recipe.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('all_recipes')) 
+
+# Search by dish types
+@app.route('/search_dish/<dish_type>')
+def search_dish(dish_type):
+    dishes = mongo.db.dishes.find()
+    cuisines = mongo.db.cuisines.find()
+    recipes =  mongo.db.recipes
+    dish_result = recipes.find({'dish_type': dish_type})
+    dish_count = dish_result.count()
+    return render_template('searchdish.html', result = dish_result, count = dish_count, dishes=dishes, cuisines=cuisines)
 
 
 if __name__ == '__main__':
