@@ -192,9 +192,9 @@ def search_allergen(allergen_name):
     users = mongo.db.users.find()
     allergens = mongo.db.allergens.find()
     recipes =  mongo.db.recipes
-    allergen_result = recipes.find({'allergen_name': allergen_name})
+    allergen_result = recipes.find({'allergen_name':{'$not': {'$eq': allergen_name}}})
     allergen_count = allergen_result.count()
-    return render_template('searchallergen.html', result = allergen_result, 
+    return render_template('searchallergen.html', result = allergen_result, allergen_name=allergen_name, 
                             count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
 
 
