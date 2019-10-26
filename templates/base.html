@@ -19,39 +19,32 @@
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li>
-                            {% if session.username %}
-                            <a href="{{url_for('logout')}}" class="nav-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                            {% else %}
-                            <a href="{{url_for('index')}}" class="nav-item">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                            {% endif %}
-                            </a>
-                        </li>
+                        {% if session.username %}
+                        <li><a href="" class="dropdown-button nav-item" data-activates="user-options1"><i class="fas fa-user"></i> {{session.username}}</a></li> 
+                        {% else %}
+                        <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        {% endif %}
+                    </ul>
+                    <ul id="user-options2" class="dropdown-content">
+                        <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
                     </ul>
                     <ul id="dishes2" class="dropdown-content">
-                      <li><a href="">Dish types</a></li>
+                        <li><a href="">Dish types</a></li>
                     </ul>
                     <ul id="cuisines2" class="dropdown-content">
-                      <li><a href="">Cuisines</a></li>
+                        <li><a href="">Cuisines</a></li>
                     </ul>
                     <ul id="allergens2" class="dropdown-content">
-                      <li><a href="">Allergens</a></li>
+                        <li><a href="">Allergens</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li> 
-                            {% if session.username %}
-                            <a href="{{url_for('logout')}}" class="nav-item">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                            {% else %}
-                            <a href="{{url_for('index')}}" class="nav-item">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                            {% endif %}
-                            </a>
-                        </li>
+                        {% if session.username %}
+                        <li><a href="" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user"></i> {{session.username}}</a></li> 
+                        {% else %}
+                        <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        {% endif %}
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="dishes2">Dish Types</a></li>
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="cuisines2">Cuisines</a></li>
                         <li><a class="dropdown-button waves-effect waves-light btn" data-activates="allergens2">Allergens</a></li>

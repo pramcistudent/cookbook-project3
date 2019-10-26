@@ -29,8 +29,19 @@ nav .brand-logo {
     margin-bottom: 30px;
     margin-top: 15px;
 }
-.card .card-title {
+.card .card-content .card-title {
     font-size: 20px;
+ margin-bottom: 0;
+}
+.small-text {
+    font-size: 12px;
+    word-spacing: 2px;
+}
+.card .card-content {
+    padding: 10px;
+}
+.card .card-content .card-icons {
+    margin-top: 30px;
 }
 
 /*----- Recipe ------ */
