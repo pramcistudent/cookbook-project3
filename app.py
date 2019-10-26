@@ -154,7 +154,7 @@ def delete_recipe(recipe_id):
     recipe.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('all_recipes')) 
 
-# Search by dish types
+# Search by Dish Types
 @app.route('/search_dish/<dish_type>')
 def search_dish(dish_type):
     dishes = mongo.db.dishes.find()
@@ -164,6 +164,15 @@ def search_dish(dish_type):
     dish_count = dish_result.count()
     return render_template('searchdish.html', result = dish_result, count = dish_count, dishes=dishes, cuisines=cuisines)
 
+# Search by Cuisine 
+@app.route('/search_cuisine/<cuisine_name>')
+def search_cuisine(cuisine_name):
+    cuisines = mongo.db.cuisines.find()
+    dishes = mongo.db.dishes.find()
+    recipes =  mongo.db.recipes
+    cuisine_result = recipes.find({'cuisine_name': cuisine_name})
+    cuisine_count = cuisine_result.count()
+    return render_template('searchcuisine.html', result = cuisine_result, count = cuisine_count, cuisines=cuisines, dishes=dishes)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 

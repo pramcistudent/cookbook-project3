@@ -34,7 +34,9 @@
                         {% endfor %}
                     </ul>
                     <ul id="cuisines2" class="dropdown-content">
-                        <li><a href="">Cuisines</a></li>
+                        {% for dish in dishes %} 
+                        <li><a href="{{url_for('search_dish', dish_type=dish.dish_type)}}">{{dish.dish_type}}</a></li>
+                        {% endfor %}
                     </ul>
                     <ul id="allergens2" class="dropdown-content">
                         <li><a href="">Allergens</a></li>
@@ -62,7 +64,9 @@
                     {% endfor %}
                 </ul>
                 <ul id="cuisines1" class="dropdown-content">
-                    <li><a href="">Cuisines</a></li>
+                    {% for dish in dishes %} 
+                    <li><a href="{{url_for('search_dish', dish_type=dish.dish_type)}}">{{dish.dish_type}}</a></li>
+                    {% endfor %}
                 </ul>    
                 <ul id="allergens1" class="dropdown-content">
                     <li><a href="">Allergens</a></li>
