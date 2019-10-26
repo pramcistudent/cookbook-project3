@@ -9,25 +9,25 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI", 'mongodb://localhost')
 app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
-
+# Querying DB
 recipes=mongo.db.recipes.find()
 dishes=mongo.db.dishes.find()
 cuisines=mongo.db.cuisines.find()
 allergens=mongo.db.allergens.find()
 total_recipes=recipes.count()
 
-
+# Variables
 users = mongo.db.users
 recipe =  mongo.db.recipes
 cuisine =  mongo.db.cuisines
 dish =  mongo.db.dishes
 
-
+# Login / Registration page
 @app.route('/')
 def index():
     return render_template("index.html")
 
-
+# Check data submitted via Registration form
 @app.route('/register', methods=['POST'])
 def register():
     fullname = request.form.get('fullname')
@@ -45,7 +45,7 @@ def register():
     success = False
     return render_template('index.html', success = success)
 
-
+# Check data submitted via Login form
 @app.route('/logout', methods=['POST'])
 def login():
     username = request.form.get('username')
@@ -59,40 +59,41 @@ def login():
     return render_template('index.html', login=login)
 
 
+# Redirects guest users to home page
 @app.route('/guest_user')
 def guest_user():
     return redirect(url_for('all_recipes'))
 
-
+# Logout user by removing username from session
 @app.route('/login')
 def logout():
     session.clear()
     return render_template('index.html')
 
-
+# Logout a user by removing username from session
 @app.route('/all_recipes')
 def all_recipes():
     return render_template("home.html", recipes=recipes, dishes=dishes, total_recipes=total_recipes)
 
-
+# Home page displaying all recipes
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
 def the_recipe(recipe_id, recipe_title):
     return render_template("recipe.html",
                         recipe = recipes.find_one({'_id': ObjectId(recipe_id),'recipe_title': recipe_title}))
 
-
+# Display form to add a recipe
 @app.route('/add_recipe')
 def add_recipe():
     return render_template("addrecipe.html", cuisines=cuisines, dishes=dishes, allergens=allergens)
 
-
+# Display form to edit the recipe
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('editrecipe.html',  
                         recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)}),
                         cuisines = cuisines, dishes = dishes, allergens = allergens)
 
-
+# Send form data to update recipe in DB
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe.update( {'_id': ObjectId(recipe_id)},
@@ -113,7 +114,7 @@ def update_recipe(recipe_id):
     })
     return redirect(url_for('all_recipes'))
 
-
+# Insert new recipe to DB collection
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     doc ={'recipe_author_name': session['username']}
@@ -135,7 +136,7 @@ def insert_recipe():
     recipes.insert_one(new_recipe)
     return redirect(url_for('all_recipes'))
 
-
+# Removes a recipe from DB
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     recipe.remove({'_id': ObjectId(recipe_id)})
