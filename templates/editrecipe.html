@@ -57,6 +57,7 @@
                 <div class="input-field col s12">
                     <select id="allergen_name" name="allergen_name" multiple>
                         <option value="" disabled selected>Choose Allergen</option>
+                        {% set _stub = allergens.rewind() %}
                         {% for allergen in allergens %}
                             {% if allergen.allergen_name in recipe.allergen_name %}
                             <option value="{{allergen.allergen_name}}" selected>{{allergen.allergen_name}}</option>

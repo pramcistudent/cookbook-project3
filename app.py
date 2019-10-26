@@ -184,6 +184,20 @@ def search_cuisine(cuisine_name):
     return render_template('searchcuisine.html', result = cuisine_result, 
                             count = cuisine_count, cuisines=cuisines, dishes=dishes, users=users, allergens=allergens)
 
+# Search by Allergens
+@app.route('/search_allergen/<allergen_name>')
+def search_allergen(allergen_name):
+    dishes = mongo.db.dishes.find()
+    cuisines = mongo.db.cuisines.find()
+    users = mongo.db.users.find()
+    allergens = mongo.db.allergens.find()
+    recipes =  mongo.db.recipes
+    allergen_result = recipes.find({'allergen_name': allergen_name})
+    allergen_count = allergen_result.count()
+    return render_template('searchallergen.html', result = allergen_result, 
+                            count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 
         port=int(os.environ.get('PORT')),
