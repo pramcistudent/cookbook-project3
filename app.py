@@ -68,8 +68,8 @@ def all_recipes():
     allergens=mongo.db.allergens.find()
     users = mongo.db.users.find()
     total_recipes=recipes.count()
-    return render_template("home.html", recipes=recipes, dishes=dishes,
-                            cuisines=cuisines, users=users, total_recipes=total_recipes, allergens=allergens)
+    return render_template("home.html", recipes=recipes, dishes=dishes, cuisines=cuisines,
+                            users=users, total_recipes=total_recipes, allergens=allergens)
 
 # Home page displaying all recipes
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')

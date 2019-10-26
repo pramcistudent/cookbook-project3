@@ -5,25 +5,25 @@
         <form action="{{url_for('update_recipe', recipe_id =recipe._id)}}" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                <input placeholder="Recipe Name" id="recipe_title" name="recipe_title" type="text" class="validate" value="{{recipe.recipe_title}}">
+                <input placeholder="Recipe Name" id="recipe_title" name="recipe_title" type="text" class="validate" value="{{recipe.recipe_title}}" required>
                 <label for="recipe_title">Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea placeholder="Recipe Short Description" id="recipe_short_description" name="recipe_short_description" class="materialize-textarea">{{recipe.recipe_short_description}}</textarea>
+                    <textarea placeholder="Recipe Short Description" id="recipe_short_description" name="recipe_short_description" class="materialize-textarea" required>{{recipe.recipe_short_description}}</textarea>
                     <label for="recipe_short_description">Short Description</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input placeholder="Paste the image url here" id="recipe_image_url" name="recipe_image_url" type="text" class="validate" value="{{recipe.recipe_image_url}}">
+                <input placeholder="Paste the image url here" id="recipe_image_url" name="recipe_image_url" type="text" class="validate" value="{{recipe.recipe_image_url}}" required>
                 <label for="recipe_image_url">Image URL</label>
             </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="cuisine_name" name="cuisine_name">
+                    <select id="cuisine_name" name="cuisine_name" required>
                         <option value="" disabled selected>Choose Cuisine</option>
                         {% set _stub = cuisines.rewind() %}
                         {% for cuisine in cuisines %}
@@ -39,7 +39,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="dish_type" name="dish_type">
+                    <select id="dish_type" name="dish_type" required>
                         <option value="" disabled selected>Choose Dish Type</option>
                         {% set _stub = dishes.rewind() %}
                         {% for dish in dishes %}
@@ -55,7 +55,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select id="allergen_name" name="allergen_name" multiple>
+                    <select id="allergen_name" name="allergen_name" multiple required>
                         <option value="" disabled selected>Choose Allergen</option>
                         {% set _stub = allergens.rewind() %}
                         {% for allergen in allergens %}
@@ -71,21 +71,21 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                <input placeholder="60mins" id="recipe_prep_time" name="recipe_prep_time" type="text" class="validate" value="{{recipe.recipe_prep_time}}">
+                <input placeholder="60mins" id="recipe_prep_time" name="recipe_prep_time" type="text" class="validate" value="{{recipe.recipe_prep_time}}" required>
                 <label for="recipe_prep_time">Preparation Time (mins)</label>
                 </div>
                 <div class="input-field col s6">
-                <input placeholder="20mins" id="recipe_cook_time" name="recipe_cook_time" type="text" class="validate" value="{{recipe.recipe_cook_time}}">
+                <input placeholder="20mins" id="recipe_cook_time" name="recipe_cook_time" type="text" class="validate" value="{{recipe.recipe_cook_time}}" required>
                 <label for="recipe_cook_time">Cooking Time (mins)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                <input placeholder="1hrs 20mins" id="total_time" name="total_time" type="text" class="validate" value="{{recipe.total_time}}">
+                <input placeholder="1hrs 20mins" id="total_time" name="total_time" type="text" class="validate" value="{{recipe.total_time}}" required>
                 <label for="total_time">Total Time (mins)</label>
                 </div>
                 <div class="input-field col s6">
-                <input placeholder="4" id="recipe_serves" name="recipe_serves" type="text" class="validate" value="{{recipe.recipe_serves}}">
+                <input placeholder="4" id="recipe_serves" name="recipe_serves" type="text" class="validate" value="{{recipe.recipe_serves}}" required>
                 <label for="recipe_serves">Servings</label>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                     {% if item == recipe.recipe_ingredients[0] %}
                     <div class="row">
                         <div class="input-field col s10 m11">
-                            <input placeholder="one per line" id="recipe_ingredients" name="ingred" type="text" class="validate" value="{{recipe.recipe_ingredients[0]}}">
+                            <input placeholder="one per line" id="recipe_ingredients" name="ingred" type="text" class="validate" value="{{recipe.recipe_ingredients[0]}}" required>
                             <label for="recipe_ingredients">Ingredient</label>
                         </div>
                         <div class="col s2 m1">
@@ -107,7 +107,7 @@
                     {% else %}
                     <div class="row new-ingredient"> 
                         <div class="input-field col s11">
-                            <input type="text" name="ingred" class="validate" value="{{item}}">
+                            <input type="text" name="ingred" class="validate" value="{{item}}" required>
                             <label>Ingredient(s)</label>
                         </div>
                         <div class="col s1">
@@ -125,7 +125,7 @@
                     {% if item == recipe.recipe_steps[0] %}
                     <div class="row">
                         <div class="input-field col s10 m11">
-                            <textarea placeholder="one per line" id="recipe_steps" name="steps" class="materialize-textarea">{{recipe.recipe_steps[0]}}</textarea>
+                            <textarea placeholder="one per line" id="recipe_steps" name="steps" class="materialize-textarea" required>{{recipe.recipe_steps[0]}}</textarea>
                             <label for="recipe_steps">Cooking Steps</label>
                         </div>
                         <div class="col s2 m1">
@@ -135,7 +135,7 @@
                     {% else %}
                     <div class="row new-step"> 
                         <div class="input-field col s11">
-                            <textarea id="recipe_steps" name="steps" class="materialize-textarea">{{item}}</textarea>
+                            <textarea id="recipe_steps" name="steps" class="materialize-textarea" required>{{item}}</textarea>
                             <label for="recipe_steps">Cooking Steps</label>
                         </div>
                         <div class="col s1">

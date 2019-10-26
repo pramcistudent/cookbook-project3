@@ -37,6 +37,10 @@ nav .brand-logo {
     font-size: 12px;
     word-spacing: 2px;
 }
+.medium-text {
+    font-size: 18px;
+    word-spacing: 2px;
+}
 .card .card-content {
     padding: 10px;
 }
