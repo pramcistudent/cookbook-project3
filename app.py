@@ -181,7 +181,7 @@ def search_cuisine(cuisine_name):
     recipes =  mongo.db.recipes
     cuisine_result = recipes.find({'cuisine_name': cuisine_name})
     cuisine_count = cuisine_result.count()
-    return render_template('searchcuisine.html', result = cuisine_result, 
+    return render_template('searchcuisine.html', result = cuisine_result, cuisine_name = cuisine_name,
                             count = cuisine_count, cuisines=cuisines, dishes=dishes, users=users, allergens=allergens)
 
 # Search by Allergens
