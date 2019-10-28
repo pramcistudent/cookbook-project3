@@ -1,4 +1,10 @@
 
+/*----- Login Page -----*/
+.divider {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
 /*----- Navbar -----*/
 nav {
     background-color: black;
@@ -22,6 +28,9 @@ nav .brand-logo {
 
 .filters {
     background-color: black;
+}
+.btn-nav{
+    padding: 0 1rem;
 }
 
 /*----- Home -----*/

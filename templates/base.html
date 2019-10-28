@@ -53,19 +53,19 @@
                         {% else %}
                         <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                         {% endif %}
-                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="dishes2">Dish Types</a></li>
-                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="cuisines2">Cuisines</a></li>
-                        <li><a class="dropdown-button waves-effect waves-light btn" data-activates="allergens2">Allergens</a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="dishes2">Dish Types <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="cuisines2">Cuisines <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="allergens2">Allergens <i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                 </div>
             </nav>
         </div>
         <nav class="filters">
             <div class="nav-wrapper row">
-                <ul class="hide-on-med-and-down col l9">
-                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='dishes1'>Dish Types</a></li>
-                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='cuisines1'>Cuisines</a></li>
-                    <li><a class="dropdown-button waves-effect waves-light btn" data-activates='allergens1'>Allergens</a></li>
+                <ul class="hide-on-med-and-down col l8">
+                    <li><a class="dropdown-button waves-effect waves-light btn-flat btn-nav" data-activates='dishes1'>Dish Types <i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button waves-effect waves-light btn-flat btn-nav" data-activates='cuisines1'>Cuisines <i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button waves-effect waves-light btn-flat btn-nav" data-activates='allergens1'>Allergens <i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
                 <ul id="dishes1" class="dropdown-content">
                     {% set _stub = dishes.rewind() %}
