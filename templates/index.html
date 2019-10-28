@@ -42,48 +42,52 @@
             </div>
         </div>
     </div>    
-    <!-- User Login -->
     <div class="container">
-        <div class="section center">
-            <h5>Login</h5>
-            <div class="divider"></div>
-            <form action="{{url_for('login')}}" method="POST">
-                <div class="input-field">
-                    <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                    <label>Username</label>
+        <div class="row">
+            <div class="col s12 m6">
+                <!-- User Login -->
+                <div class="section center">
+                    <h5>Login</h5>
+                    <div class="divider"></div>
+                    <form action="{{url_for('login')}}" method="POST">
+                        <div class="input-field">
+                            <input placeholder="Enter username" name="username" type="text" class="validate" required>
+                            <label>Username</label>
+                        </div>
+                        <div class="input-field">
+                            <input placeholder="Enter password" name="password" type="text" class="validate" required>
+                            <label>Password</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Sign In</button>
+                    </form>
                 </div>
-                <div class="input-field">
-                    <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                    <label>Password</label>
+            </div>
+            <div class="col s12 m6">
+                <!-- User Registration -->
+                <div class="section center">
+                    <h5>Register</h5>
+                    <div class="divider"></div>
+                    <form action="{{url_for('register')}}" method="POST">
+                        <div class="input-field">
+                            <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
+                            <label>Full Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input placeholder="Enter username" name="username" type="text" class="validate" required>
+                            <label>Username</label>
+                        </div>
+                        <div class="input-field">
+                            <input placeholder="Enter password" name="password" type="text" class="validate" required>
+                            <label>Password</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+                    </form>
                 </div>
-                <button class="btn waves-effect waves-light" type="submit">Sign In</button>
-            </form>
+            </div>
         </div>
     </div>
     
-    <!-- User Registration -->
-    <div class="container">
-        <div class="section center">
-            <h5>Register</h5>
-            <div class="divider"></div>
-            <form action="{{url_for('register')}}" method="POST">
-                <div class="input-field">
-                    <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
-                    <label>Full Name</label>
-                </div>
-                <div class="input-field">
-                    <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                    <label>Username</label>
-                </div>
-                    
-                <div class="input-field">
-                    <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                    <label>Password</label>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
-            </form>
-        </div>
-    </div>
+   
     
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
