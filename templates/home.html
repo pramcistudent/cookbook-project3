@@ -1,5 +1,7 @@
 {% extends 'base.html' %}{% block content %}
 <h5 class="heading">All Recipes <span class="medium-text">({{total_recipes}})</span></h5>
+<div class="divider"></div>
+
 <div class="row">
     {% for recipe in recipes %}
     <div class="card medium col s8 offset-s2 m6 l3">
