@@ -39,14 +39,13 @@ def login():
     users = mongo.db.users
     username = request.form.get('username')
     password = request.form.get('password')
-    registered = users.find_one({'username': username, 'password': password})
+    registered = users.find_one({'username': {'$regex': username, '$options': 'i'}, 'password': password})
     if registered is not None:
         session['username'] = username
         login = True
         return redirect(url_for('all_recipes'))
     login = False    
     return render_template('index.html', login=login)
-
 
 # Redirects guest users to home page
 @app.route('/guest_user')
@@ -58,6 +57,21 @@ def guest_user():
 def logout():
     session.clear()
     return render_template('index.html')
+
+# My recipes page
+@app.route('/my_recipes/<username>')
+def my_recipes(username):
+    recipes=mongo.db.recipes.find()
+    cuisines =  mongo.db.cuisines.find()
+    dishes=mongo.db.dishes.find()
+    allergens=mongo.db.allergens.find()
+    users = mongo.db.users.find()
+    if username is not None:
+        my_recipes=mongo.db.recipes.find({'recipe_author_name': {'$regex': username, '$options': 'i'}})
+        total_my_recipes=my_recipes.count()
+        print(username)
+    return render_template("user.html", recipes=recipes, dishes=dishes, cuisines=cuisines, my_recipes=my_recipes, 
+                            users=users, total_my_recipes=total_my_recipes, allergens=allergens)    
 
 # Logout a user by removing username from session
 @app.route('/all_recipes')

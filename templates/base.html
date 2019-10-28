@@ -16,6 +16,10 @@
                 <div class="nav-wrapper">
                     <a href="{{url_for('all_recipes')}}" class="brand-logo">Cookbook</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul id="user-options1" class="dropdown-content">
+                        <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</li>
+                        <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
+                    </ul>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
                         {% if session.username %}
@@ -26,7 +30,8 @@
                         {% endif %}
                     </ul>
                     <ul id="user-options2" class="dropdown-content">
-                        <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
+                      <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</li>
+                      <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
                     </ul>
                     <ul id="dishes2" class="dropdown-content">
                         {% for dish in dishes %} 
