@@ -9,9 +9,9 @@
         <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
             <span class="small-text">by <strong>{{recipe.recipe_author_name}}</strong></span>
-            <p class="card-icons">
-                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn-floating waves-effect waves-light"><i class="material-icons">Recipe</i></a>
-            </p>
+            <div class="card-icons s12 m12">
+                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-details">View recipe <i class="material-icons right">chevron_right</i></a>
+            </div>
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>{{recipe.recipe_title}}</span>

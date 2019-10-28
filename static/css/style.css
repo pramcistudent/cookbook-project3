@@ -31,7 +31,12 @@ nav .brand-logo {
 }
 .card .card-content .card-title {
     font-size: 20px;
- margin-bottom: 0;
+    margin-bottom: 0;
+}
+.btn-details {
+    width: 100%;
+    word-spacing: 2px;
+    text-transform: none;
 }
 .small-text {
     font-size: 12px;
@@ -81,6 +86,12 @@ nav .brand-logo {
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
+/*----- Footer -----*/
+.page-footer {
+    background-color: #4b788e;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
 /*----- Media Queries -----*/
 @media screen and (min-width: 600px) {
     nav .brand-logo {
