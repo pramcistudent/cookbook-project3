@@ -14,7 +14,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Cookbook</a>
+                    <a href="{{url_for('all_recipes')}}" class="brand-logo">Cookbook</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('all_recipes')}}" class="nav-item"><i class="fas fa-home"></i>Home</a></li>
@@ -90,11 +90,10 @@
             </div>
         </nav>
     </header>
-    
+    <main>
     <!-- Block content -->
-    {% block content %}
-    {% endblock %}
-    
+    {% block content %}{% endblock %}
+    </main>
      <footer class="page-footer footer-copyright center-text">
           <div class="container"> © 2019 Cookbook</div>
     </footer>
