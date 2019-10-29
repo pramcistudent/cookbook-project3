@@ -1,18 +1,20 @@
 {% extends 'base.html' %}{% block content %}
 <h5 class="heading">All Recipes <span class="medium-text">({{total_recipes}})</span></h5>
 <div class="divider"></div>
-<div class="row">
-    <ul class="pagination right">
-        {% set num = num|int %} {% set last_page = total_pages[-1]|int %} {% if last_page > 1 %}
-        <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
-            <a href="{{url_for('all_recipes', num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
-        {% endif %} {% for num in total_pages %}
-        <li {% if request.path==u rl_for( 'all_recipes', num=n um) %}class="active" {% endif %}><a href="{{url_for('all_recipes', num = num)}}">{{num}}</a></li>
-        {% endfor %} {% if last_page > 1 %}
-        <li {% if request.path==u rl_for( 'all_recipes', num=l ast_page) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
-            <a href="{{url_for('all_recipes', num = num+1)}}"><i class="material-icons">chevron_right</i></a></li>
-        {% endif %}
-    </ul>
+<div class="container">
+    <div class="row">
+        <ul class="pagination right">
+            {% set num = num|int %} {% set last_page = total_pages[-1]|int %} {% if last_page > 1 %}
+            <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
+                <a href="{{url_for('all_recipes', num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %} {% for num in total_pages %}
+            <li {% if request.path==u rl_for( 'all_recipes', num=n um) %}class="active" {% endif %}><a href="{{url_for('all_recipes', num = num)}}">{{num}}</a></li>
+            {% endfor %} {% if last_page > 1 %}
+            <li {% if request.path==u rl_for( 'all_recipes', num=l ast_page) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
+                <a href="{{url_for('all_recipes', num = num+1)}}"><i class="material-icons">chevron_right</i></a></li>
+            {% endif %}
+        </ul>
+    </div>    
 </div>
 <div class="row">
     {% for recipe in recipes_per_page %}

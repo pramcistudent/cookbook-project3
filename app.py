@@ -52,8 +52,7 @@ def login():
 # Redirects guest users to home page
 @app.route('/guest_user')
 def guest_user():
-    default_page_num= '1'
-    return redirect(url_for('all_recipes', num=default_page_num))
+    return redirect(url_for('all_recipes', num=1))
 
 # Logout user by removing username from session
 @app.route('/login')
@@ -146,8 +145,7 @@ def update_recipe(recipe_id):
         'recipe_ingredients':request.form.getlist('ingred'),
         'recipe_steps':request.form.getlist('steps'),
     })
-    default_page_num = '1'
-    return redirect(url_for('all_recipes', num=default_page_num))
+    return redirect(url_for('all_recipes', num=1))
 
 # Insert new recipe to DB collection
 @app.route('/insert_recipe', methods=['POST'])
@@ -177,12 +175,11 @@ def insert_recipe():
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipes
     recipe.remove({'_id': ObjectId(recipe_id)})
-    default_page_num='1'
-    return redirect(url_for('all_recipes', num=default_page_num)) 
+    return redirect(url_for('all_recipes', num=1))
 
 # Search by Dish Types
-@app.route('/search_dish/<dish_type>')
-def search_dish(dish_type):
+@app.route('/search_dish/<dish_type>/page:<num>')
+def search_dish(dish_type, num):
     dishes = mongo.db.dishes.find()
     cuisines = mongo.db.cuisines.find()
     users = mongo.db.users.find()
@@ -190,8 +187,11 @@ def search_dish(dish_type):
     recipes =  mongo.db.recipes
     dish_result = recipes.find({'dish_type': dish_type})
     dish_count = dish_result.count()
-    return render_template('searchdish.html', result = dish_result, dish_type=dish_type,
-                            count = dish_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens) 
+    total_pages = range(1, math.ceil(dish_count/8) + 1)
+    skip_num = 8 * (int(num)-1)
+    recipes_per_page = dish_result.skip(skip_num).limit(8)
+    return render_template('searchdish.html', dish_type=dish_type, num=num, total_pages=total_pages,
+                            recipes_per_page=recipes_per_page, count = dish_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens) 
 
 # Search by Cuisine 
 @app.route('/search_cuisine/<cuisine_name>')
