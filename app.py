@@ -87,7 +87,9 @@ def all_recipes(num):
     total_pages = range(1, math.ceil(total_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = recipes.skip(skip_num).limit(8)
-    if (int(num) * 8) < total_recipes:
+    if total_recipes < 8:
+        page_count = total_recipes
+    elif (int(num) * 8) < total_recipes:
         page_count = int(num) * 8
     else:
         page_count = int(num) * 8 - total_recipes
@@ -194,8 +196,14 @@ def search_dish(dish_type, num):
     total_pages = range(1, math.ceil(dish_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = dish_result.skip(skip_num).limit(8)
-    return render_template('searchdish.html', dish_type=dish_type, num=num, total_pages=total_pages,
-                            recipes_per_page=recipes_per_page, count = dish_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens) 
+    if dish_count < 8:
+        page_count = dish_count
+    elif (int(num) * 8) < dish_count:
+        page_count = int(num) * 8
+    else:
+        page_count = int(num) * 8 - dish_count
+    return render_template('searchdish.html', dish_type=dish_type, num=num, total_pages=total_pages,page_count=page_count,
+                            skip_num=skip_num, recipes_per_page=recipes_per_page, count = dish_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens) 
 
 # Search by Cuisine 
 @app.route('/search_cuisine/<cuisine_name>/page:<num>')
@@ -210,7 +218,12 @@ def search_cuisine(cuisine_name, num):
     total_pages = range(1, math.ceil(cuisine_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = cuisine_result.skip(skip_num).limit(8)
-    page_count = recipes_per_page.count()
+    if cuisine_count < 8:
+        page_count = cuisine_count
+    elif (int(num) * 8) < cuisine_count:
+        page_count = int(num) * 8
+    else:
+        page_count = int(num) * 8 - cuisine_count
     return render_template('searchcuisine.html', recipes_per_page = recipes_per_page, num=num, cuisine_name = cuisine_name,
                             total_pages=total_pages, page_count=page_count, count = cuisine_count, cuisines=cuisines, dishes=dishes, users=users, allergens=allergens)
 
@@ -227,8 +240,14 @@ def search_allergen(allergen_name, num):
     total_pages = range(1, math.ceil(allergen_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = allergen_result.skip(skip_num).limit(8)
+    if allergen_count < 8:
+        page_count = allergen_count
+    elif (int(num) * 8) < allergen_count:
+        page_count = int(num) * 8
+    else:
+        page_count = int(num) * 8 - allergen_count
     return render_template('searchallergen.html', num = num, allergen_name=allergen_name, total_pages = total_pages, 
-                            recipes_per_page=recipes_per_page, count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
+                            skip_num=skip_num, page_count=page_count, recipes_per_page=recipes_per_page, count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
 
 
 if __name__ == '__main__':
