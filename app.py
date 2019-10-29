@@ -87,8 +87,12 @@ def all_recipes(num):
     total_pages = range(1, math.ceil(total_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = recipes.skip(skip_num).limit(8)
+    if (int(num) * 8) < total_recipes:
+        page_count = int(num) * 8
+    else:
+        page_count = int(num) * 8 - total_recipes
     return render_template("home.html", recipes=recipes, num=num, dishes=dishes, cuisines=cuisines, total_pages=total_pages, skip_num=skip_num, 
-                            recipes_per_page=recipes_per_page, users=users, total_recipes=total_recipes, allergens=allergens)
+                            page_count=page_count, recipes_per_page=recipes_per_page, users=users, total_recipes=total_recipes, allergens=allergens)
 
 # Home page displaying all recipes
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
