@@ -1,23 +1,43 @@
 {% extends 'base.html' %}{% block content %}
 <h5 class="heading">{{cuisine_name}} cuisine <span class="medium-text">({{count}})</span></h5>
 <div class="divider"></div>
+<div class="container">
+    <div class="row">
+        <ul class="pagination right">
+            {% set num = num|int %} 
+            {% set last_page = total_pages[-1]|int %} 
+            {% if last_page > 1 %}
+            <li {% if request.path.replace( ' ', '%20')==u rl_for( 'search_cuisine', cuisine_name=cuisine_name, num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
+                <a href="{{url_for('search_cuisine', cuisine_name=cuisine_name, num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
+            {% endif %} 
+            {% for num in total_pages %}
+            <li {% if request.path.replace( ' ', '%20')==u rl_for( 'search_cuisine', cuisine_name=cuisine_name, num=n um) %}class="active" {% endif %}>
+                <a href="{{url_for('search_cuisine', cuisine_name=cuisine_name, num = num)}}">{{num}}</a></li>
+            {% endfor %} 
+            {% if last_page > 1 %}
+            <li {% if request.path.replace( ' ', '%20')==u rl_for( 'search_cuisine', cuisine_name=cuisine_name, num=l ast_page) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
+                <a href="{{url_for('search_cuisine', cuisine_name=cuisine_name, num = num+1)}}"><i class="material-icons">chevron_right</i></a></li>
+            {% endif %}
 
+        </ul>
+    </div>
+</div>
 <div class="row">
-    {% for res in result %}
+    {% for recipe in recipes_per_page %}
     <div class="card medium col s8 offset-s2 m6 l3">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" height="250" src="{{res.recipe_image_url}}">
+            <img class="activator" height="250" src="{{recipe.recipe_image_url}}">
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">{{res.recipe_title}}<i class="material-icons right">more_vert</i></span>
-            <span class="small-text">by <strong>{{res.recipe_author_name}}</strong></span>
+            <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
+            <span class="small-text">by <strong>{{recipe.recipe_author_name}}</strong></span>
             <div class="card-icons s12 m12">
                 <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-to-recipe">View recipe <i class="material-icons right">chevron_right</i></a>
             </div>
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>{{res.recipe_title}}</span>
-            <p>{{res.recipe_short_description}}</p>
+            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>{{recipe.recipe_title}}</span>
+            <p>{{recipe.recipe_short_description}}</p>
         </div>
     </div>
     {% endfor %}

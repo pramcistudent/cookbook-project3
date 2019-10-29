@@ -1,8 +1,9 @@
 {% extends 'base.html' %}{% block content %}
-<h5 class="heading">All Recipes <span class="medium-text">({{total_recipes}})</span></h5>
+<h5 class="heading">All Recipes</h5>
 <div class="divider"></div>
 <div class="container">
     <div class="row">
+        <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{total_recipes}} Results</div>
         <ul class="pagination right">
             {% set num = num|int %} {% set last_page = total_pages[-1]|int %} {% if last_page > 1 %}
             <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
