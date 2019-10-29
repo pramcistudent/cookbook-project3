@@ -35,7 +35,7 @@
                     </ul>
                     <ul id="dishes2" class="dropdown-content">
                         {% for dish in dishes %} 
-                        <li><a href="{{url_for('search_dish', dish_type=dish.dish_type)}}">{{dish.dish_type}}</a></li>
+                        <li><a href="{{url_for('search_dish', dish_type=dish.dish_type, num=1)}}">{{dish.dish_type}}</a></li>
                         {% endfor %}
                     </ul>
                     <ul id="cuisines2" class="dropdown-content">
@@ -46,7 +46,7 @@
                     <ul id="allergens2" class="dropdown-content">
                         {% for allergen in allergens %}
                             {% if allergen.allergen_name != 'No allergens' %}
-                            <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name)}}">{{allergen.allergen_name}}</a></li>
+                            <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
@@ -75,7 +75,7 @@
                 <ul id="dishes1" class="dropdown-content">
                     {% set _stub = dishes.rewind() %}
                     {% for dish in dishes %} 
-                    <li><a href="{{url_for('search_dish', dish_type=dish.dish_type)}}">{{dish.dish_type}}</a></li>
+                    <li><a href="{{url_for('search_dish', dish_type=dish.dish_type, num=1)}}">{{dish.dish_type}}</a></li>
                     {% endfor %}
                 </ul>
                 <ul id="cuisines1" class="dropdown-content">
@@ -88,7 +88,7 @@
                     {% set _stub = allergens.rewind() %}
                     {% for allergen in allergens %}
                         {% if allergen.allergen_name != 'No allergens' %}
-                        <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name)}}">{{allergen.allergen_name}}</a></li>
+                        <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

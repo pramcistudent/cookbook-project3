@@ -207,8 +207,8 @@ def search_cuisine(cuisine_name):
                             count = cuisine_count, cuisines=cuisines, dishes=dishes, users=users, allergens=allergens)
 
 # Search by Allergens
-@app.route('/search_allergen/<allergen_name>')
-def search_allergen(allergen_name):
+@app.route('/search_allergen/<allergen_name>/page:<num>')
+def search_allergen(allergen_name, num):
     dishes = mongo.db.dishes.find()
     cuisines = mongo.db.cuisines.find()
     users = mongo.db.users.find()
@@ -216,8 +216,11 @@ def search_allergen(allergen_name):
     recipes =  mongo.db.recipes
     allergen_result = recipes.find({'allergen_name':{'$not': {'$eq': allergen_name}}})
     allergen_count = allergen_result.count()
-    return render_template('searchallergen.html', result = allergen_result, allergen_name=allergen_name, 
-                            count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
+    total_pages = range(1, math.ceil(allergen_count/8) + 1)
+    skip_num = 8 * (int(num)-1)
+    recipes_per_page = allergen_result.skip(skip_num).limit(8)
+    return render_template('searchallergen.html', num = num, allergen_name=allergen_name, total_pages = total_pages, 
+                            recipes_per_page=recipes_per_page, count = allergen_count, dishes=dishes, cuisines=cuisines, users=users, allergens=allergens)
 
 
 if __name__ == '__main__':
