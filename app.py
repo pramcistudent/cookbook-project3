@@ -1,4 +1,5 @@
 import os
+import math
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -43,14 +44,16 @@ def login():
     if registered is not None:
         session['username'] = username
         login = True
-        return redirect(url_for('all_recipes'))
+        default_page_num= '1'
+        return redirect(url_for('all_recipes', num=default_page_num))
     login = False    
     return render_template('index.html', login=login)
 
 # Redirects guest users to home page
 @app.route('/guest_user')
 def guest_user():
-    return redirect(url_for('all_recipes'))
+    default_page_num= '1'
+    return redirect(url_for('all_recipes', num=default_page_num))
 
 # Logout user by removing username from session
 @app.route('/login')
@@ -74,16 +77,19 @@ def my_recipes(username):
                             users=users, total_my_recipes=total_my_recipes, allergens=allergens)    
 
 # Logout a user by removing username from session
-@app.route('/all_recipes')
-def all_recipes():
+@app.route('/all_recipes/page:<num>')
+def all_recipes(num):
     recipes=mongo.db.recipes.find()
     cuisines =  mongo.db.cuisines.find()
     dishes=mongo.db.dishes.find()
     allergens=mongo.db.allergens.find()
     users = mongo.db.users.find()
     total_recipes=recipes.count()
-    return render_template("home.html", recipes=recipes, dishes=dishes, cuisines=cuisines,
-                            users=users, total_recipes=total_recipes, allergens=allergens)
+    total_pages = range(1, math.ceil(total_recipes/8) + 1)
+    skip_num = 8 * (int(num)-1)
+    recipes_per_page = recipes.skip(skip_num).limit(8)
+    return render_template("home.html", recipes=recipes, num=num, dishes=dishes, cuisines=cuisines, total_pages=total_pages, skip_num=skip_num, 
+                            recipes_per_page=recipes_per_page, users=users, total_recipes=total_recipes, allergens=allergens)
 
 # Home page displaying all recipes
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
@@ -140,7 +146,8 @@ def update_recipe(recipe_id):
         'recipe_ingredients':request.form.getlist('ingred'),
         'recipe_steps':request.form.getlist('steps'),
     })
-    return redirect(url_for('all_recipes'))
+    default_page_num = '1'
+    return redirect(url_for('all_recipes', num=default_page_num))
 
 # Insert new recipe to DB collection
 @app.route('/insert_recipe', methods=['POST'])
@@ -170,7 +177,8 @@ def insert_recipe():
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipes
     recipe.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('all_recipes')) 
+    default_page_num='1'
+    return redirect(url_for('all_recipes', num=default_page_num)) 
 
 # Search by Dish Types
 @app.route('/search_dish/<dish_type>')
