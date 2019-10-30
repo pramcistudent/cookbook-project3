@@ -10,9 +10,6 @@
 .btn {
     background-color: #4ec5c1;
 }
-.btn-flat {
-    color: #ec576B;
-}
 .dropdown-content li>a {
     color: #fafafa;
 }
@@ -60,6 +57,7 @@ nav .brand-logo {
 }
 .btn-nav{
     padding: 0 0.5rem;
+    color: #fafafa;
 }
 
 /*----- Home -----*/
@@ -69,9 +67,8 @@ nav .brand-logo {
     font-family: 'Cairo', sans-serif;
     font-weight: 900;
 }
-.card .card-content .card-title {
-    font-size: 20px;
-    margin-bottom: 0;
+.card .card-content .card-icons {
+    margin-top: 10px;
 }
 .btn-to-recipe {
     width: 100%;
