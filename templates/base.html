@@ -28,7 +28,7 @@
                         <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item">Home</a></li>
                         {% if session.username %}
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item">Add recipe</a></li>
-                        <li><a href="#" class="dropdown-button nav-item user-dropdown" data-activates="user-options1"><i class="fas fa-user white-text"></i><span class="capitalize">Logged in as</span> {{session.username}}</a></li>
+                        <li><a href="#" class="dropdown-button nav-item user-dropdown" data-activates="user-options1"><i class="fas fa-user white-text"></i><span class="white-text">Logged in as {{session.username}}</span></a></li>
                         {% else %}
                         <li><a href="{{url_for('index')}}" class="nav-item"> Login</a></li>
                         {% endif %}
@@ -51,9 +51,8 @@
                         {% endfor %}
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        <!--<li><a href="{{url_for('all_recipes', num=default_page_num)}}" class="nav-item"><i class="fas fa-home"></i> Home</a></li>-->
                         {% if session.username %}
-                        <li><a href="#!" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user white-text"></i><span class="capitalize">Logged in as</span> {{session.username}}</a></li>
+                        <li class="black"><a href="#!" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user white-text"></i><span class="white-text">Logged in as {{session.username}}</span></a></li>
                         {% endif %}
                         <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item">Home</a></li>
                         {% if session.username %}
