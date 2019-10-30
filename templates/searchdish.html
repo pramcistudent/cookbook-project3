@@ -6,6 +6,7 @@
         <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{count}} Results</div>
         <ul class="pagination right">
             {% set num = num|int %} 
+            {% if total_pages %}
             {% set last_page = total_pages[-1]|int %} 
             {% if last_page > 1 %}
             <li {% if request.path.replace(' ','%20') == url_for('search_dish', dish_type=dish_type, num = 1) %} class="disabled" {% else %} class="waves-effect" {% endif %}>

@@ -5,12 +5,18 @@
     <div class="row">
         <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{total_recipes}} Results</div>
         <ul class="pagination right">
-            {% set num = num|int %} {% set last_page = total_pages[-1]|int %} {% if last_page > 1 %}
+            {% set num = num|int %} 
+            {% if total_pages %}
+            {% set last_page = total_pages[-1]|int %}
+            {% endif %}
+            {% if last_page > 1 %}
             <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('all_recipes', num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
-            {% endif %} {% for num in total_pages %}
+            {% endif %} 
+            {% for num in total_pages %}
             <li {% if request.path==u rl_for( 'all_recipes', num=n um) %}class="active" {% endif %}><a href="{{url_for('all_recipes', num = num)}}">{{num}}</a></li>
-            {% endfor %} {% if last_page > 1 %}
+            {% endfor %} 
+            {% if last_page > 1 %}
             <li {% if request.path==u rl_for( 'all_recipes', num=l ast_page) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('all_recipes', num = num+1)}}"><i class="material-icons">chevron_right</i></a></li>
             {% endif %}

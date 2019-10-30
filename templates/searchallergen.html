@@ -6,7 +6,9 @@
         <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{count}} Results</div>
         <ul class="pagination right">
             {% set num = num|int %} 
-            {% set last_page = total_pages[-1]|int %} 
+            {% if total_pages %}
+            {% set last_page = total_pages[-1]|int %}
+            {% endif %}
             {% if last_page > 1 %}
             <li {% if request.path.replace(' ','%20') == url_for('search_allergen', allergen_name=allergen_name, num = 1) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('search_allergen', allergen_name=allergen_name, num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
