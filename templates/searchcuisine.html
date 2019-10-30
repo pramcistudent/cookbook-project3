@@ -3,10 +3,14 @@
 <div class="divider"></div>
 <div class="container">
     <div class="row">
-        <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{count}} Results</div>
+        {% if count == 0 %}  
+        <div class="medium-text left">Showing {{skip_num}} - {{skip_num + page_count}} of {{count}} Results</div>
+        {% else %}
+        <div class="medium-text left">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{count}} Results</div>
+        {% endif %}
         <ul class="pagination right">
             {% set num = num|int %} 
-            {% set last_page = total_pages[-1]|int %} 
+            {% if total_pages %}{% set last_page = total_pages[-1]|int %}{% else %}{% set last_page = 0|int %}{% set total_pages = 0|int %}{% endif %}
             {% if last_page > 1 %}
             <li {% if request.path.replace(' ','%20')==u rl_for( 'search_cuisine', cuisine_name=cuisine_name, num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('search_cuisine', cuisine_name=cuisine_name, num = num-1)}}"><i class="material-icons">chevron_left</i></a></li>
