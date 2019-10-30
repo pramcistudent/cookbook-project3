@@ -11,27 +11,27 @@
 </head>
 <body>
     <header>
+        <ul id="user-options1" class="dropdown-content">
+            <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+        <ul id="user-options2" class="dropdown-content">
+            <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{url_for('all_recipes', num=1)}}" class="brand-logo">Cookbook</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <ul id="user-options1" class="dropdown-content">
-                        <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</li>
-                        <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
-                    </ul>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item"><i class="fas fa-home"></i> Home</a></li>
                         {% if session.username %}
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li><a href="" class="dropdown-button nav-item" data-activates="user-options1"><i class="fas fa-user"></i> {{session.username}}</a></li> 
+                        <li><a href="#" class="dropdown-button nav-item" data-activates="user-options1">{{session.username}}</a></li>
                         {% else %}
                         <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                         {% endif %}
-                    </ul>
-                    <ul id="user-options2" class="dropdown-content">
-                      <li><a href="{{url_for('my_recipes', username = session.username)}}"><i class="fas fa-book-open"></i> My recipes</li>
-                      <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</li>
                     </ul>
                     <ul id="dishes2" class="dropdown-content">
                         {% for dish in dishes %} 
@@ -54,7 +54,7 @@
                         <li><a href="{{url_for('all_recipes', num=default_page_num)}}" class="nav-item"><i class="fas fa-home"></i> Home</a></li>
                         {% if session.username %}
                         <li><a href="{{url_for('add_recipe')}}" class="nav-item"><i class="fas fa-plus-circle"></i>Add recipe</a></li>
-                        <li><a href="" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user"></i> {{session.username}}</a></li> 
+                        <li><a href="#!" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user"></i> {{session.username}}</a></li>
                         {% else %}
                         <li><a href="{{url_for('index')}}" class="nav-item"><i class="fas fa-sign-in-alt"></i> Login</a></li>
                         {% endif %}
@@ -109,8 +109,8 @@
     <script>
         $(document).ready(function(){
             $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
-            $(".button-collapse").sideNav();
             $(".dropdown-button").dropdown();
+            $(".button-collapse").sideNav();
             $('select').material_select();
             var delete_icon = '<i class="material-icons">delete</i></a></div></div>';
             var ingredient_field = `<div class="row new-ingredient"> <div class="input-field col s11">

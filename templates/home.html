@@ -3,11 +3,13 @@
 <div class="divider"></div>
 <div class="container">
     <div class="row">
-        {% if total_recipes == 0 %}
-        <div class="medium-text">Showing {{skip_num}} - {{skip_num + page_count}} of {{total_recipes}} Results</div>
-        {% else %}
-        <div class="medium-text">Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{total_recipes}} Results</div>
-        {% endif %}
+        <ul class="left">
+            {% if total_recipes == 0 %}
+            <li>Showing {{skip_num}} - {{skip_num + page_count}} of {{total_recipes}} Results</li>
+            {% else %}
+            <li>Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{total_recipes}} Results</li>
+            {% endif %}
+        </ul> 
         <ul class="pagination right">
             {% set num = num|int %} 
             {% if total_pages %}{% set last_page = total_pages[-1]|int %}{% else %}{% set last_page = 0|int %}{% set total_pages = 0|int %}{% endif %}

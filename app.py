@@ -44,8 +44,7 @@ def login():
     if registered is not None:
         session['username'] = username
         login = True
-        default_page_num= '1'
-        return redirect(url_for('all_recipes', num=default_page_num))
+        return redirect(url_for('all_recipes', num=1))
     login = False    
     return render_template('index.html', login=login)
 

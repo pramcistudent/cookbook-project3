@@ -1,4 +1,8 @@
 
+/*----- Materialize -----*/
+.disabled {
+    pointer-events: none !important;
+}
 /*----- Login Page -----*/
 .divider {
     margin-bottom: 20px;
