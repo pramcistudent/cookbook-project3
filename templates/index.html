@@ -41,14 +41,20 @@
                 <a href="{{url_for('guest_user')}}" class="btn waves-effect waves-light" type="submit">Continue</a>
             </div>
         </div>
-    </div>    
+    </div>
+    <!-- login forms -->
     <div class="container">
-        <div class="row">
-            <div class="col s12 m6">
-                <!-- User Login -->
-                <div class="section center">
-                    <h5>Login</h5>
-                    <div class="divider"></div>
+        <div class="section">
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a class="active" href="#test1">Sign In</a></li>
+                        <li class="tab col s6"><a href="#test2">Sign Up</a></li>
+                    </ul>
+                </div>
+                 <!-- Sign In form -->
+                <div id="test1" class="col s12 center">
+                    <h5 class="heading">Login to your Account</h5>
                     <form action="{{url_for('login')}}" method="POST">
                         <div class="input-field">
                             <input placeholder="Enter username" name="username" type="text" class="validate" required>
@@ -61,12 +67,9 @@
                         <button class="btn waves-effect waves-light" type="submit">Sign In</button>
                     </form>
                 </div>
-            </div>
-            <div class="col s12 m6">
-                <!-- User Registration -->
-                <div class="section center">
-                    <h5>Register</h5>
-                    <div class="divider"></div>
+                <!-- Sign up form -->
+                <div id="test2" class="col s12 center">
+                    <h5 class="heading">Sign Up</h5>
                     <form action="{{url_for('register')}}" method="POST">
                         <div class="input-field">
                             <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
@@ -86,9 +89,6 @@
             </div>
         </div>
     </div>
-    
-   
-    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
