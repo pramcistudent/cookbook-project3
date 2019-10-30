@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Cairo|Liu+Jian+Mao+Cao&display=swap');
+
+/*----- Body -----*/
+.fas {
+    padding-right: 5px;
+}
+.fa-user {
+    padding-right: 10px;
+}
+.btn {
+    background-color: #4ec5c1;
+}
+.btn-flat {
+    color: #ec576B;
+}
+.dropdown-content li>a {
+    color: #fafafa;
+}
+.capitalize {
+    text-transform: capitalize;
+}
 
 /*----- Materialize -----*/
 .disabled {
@@ -18,12 +39,16 @@ nav .brand-logo {
     font-size: 25px;
     word-spacing: 2px;
     letter-spacing: 4px;
+    padding-left: 20px;
+    font-family: 'Liu Jian Mao Cao';
 }
 
 .nav-item {
     text-transform: uppercase;
     word-spacing: 2px;
     letter-spacing: 1px;
+    padding: 0 35px;
+    color: #eceff1;
 }
 
 .navbar-fixed {
@@ -34,13 +59,18 @@ nav .brand-logo {
     background-color: black;
 }
 .btn-nav{
-    padding: 0 1rem;
+    padding: 0 0.5rem;
 }
 
 /*----- Home -----*/
+.custom-container {
+    width: 85%;
+}
 .heading {
     margin-bottom: 30px;
     margin-top: 15px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
 }
 .card .card-content .card-title {
     font-size: 20px;
@@ -88,9 +118,6 @@ nav .brand-logo {
 .list-item-height {
     margin-top: 15px;
 }
-.center-text {
-    text-align: center;
-}
 .recipe-img {
     border-radius: 1.7rem;
     width: 100%;
@@ -113,6 +140,8 @@ main {
     background-color: #4b788e;
     padding-top: 15px;
     padding-bottom: 10px;
+    margin-top: 20px;
+    color: #eceff1;
 }
 /*----- Media Queries -----*/
 @media screen and (min-width: 600px) {
