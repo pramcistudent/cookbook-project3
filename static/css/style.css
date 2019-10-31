@@ -1,37 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Cairo|Liu+Jian+Mao+Cao&display=swap');
 
-/*----- Body -----*/
-.fas {
-    padding-right: 5px;
+/*----- GLOBAL STYLING -----*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
-.fa-user {
-    padding-right: 10px;
-}
-.btn {
-    background-color: #4ec5c1;
-}
-.dropdown-content li>a {
-    color: #fafafa;
-}
-.capitalize {
-    text-transform: capitalize;
+main {
+    flex: 1 0 auto;
 }
 
-/*----- Materialize -----*/
-.disabled {
-    pointer-events: none !important;
-}
-/*----- Login Page -----*/
-.divider {
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-/*----- Navbar -----*/
+/*----- NAVBAR -----*/
 nav {
     background-color: black;
 }
-
 nav .brand-logo {
     font-size: 25px;
     word-spacing: 2px;
@@ -39,7 +21,6 @@ nav .brand-logo {
     padding-left: 20px;
     font-family: 'Liu Jian Mao Cao';
 }
-
 .nav-item {
     text-transform: uppercase;
     word-spacing: 2px;
@@ -47,11 +28,9 @@ nav .brand-logo {
     padding: 0 35px;
     color: #eceff1;
 }
-
 .navbar-fixed {
     z-index: 9999;
 }
-
 .filters {
     background-color: black;
 }
@@ -59,21 +38,33 @@ nav .brand-logo {
     padding: 0 0.5rem;
     color: #fafafa;
 }
+.capitalize {
+    text-transform: capitalize;
+}
+.fas {
+    padding-right: 5px;
+}
+.fa-user {
+    padding-right: 10px;
+}
+.dropdown-content li>a {
+    color: #fafafa;
+}
 
-/*----- Home -----*/
+/*----- BUTTON -----*/
+.btn {
+    background-color: #4ec5c1;
+}
+.disabled {
+    pointer-events: none !important;
+}
+
+/*----- HEADER / TITLE / TEXT -----*/
 .heading {
     margin-bottom: 30px;
     margin-top: 15px;
     font-family: 'Cairo', sans-serif;
     font-weight: 900;
-}
-.card .card-content .card-icons {
-    margin-top: 10px;
-}
-.btn-to-recipe {
-    width: 100%;
-    word-spacing: 2px;
-    text-transform: none;
 }
 .small-text {
     font-size: 12px;
@@ -83,14 +74,12 @@ nav .brand-logo {
     font-size: 18px;
     word-spacing: 2px;
 }
-.card .card-content {
-    padding: 10px;
-}
-.card .card-content .card-icons {
-    margin-top: 30px;
-}
 
-/*----- Recipe ------ */
+/*----- LOGIN / REGISTER -----*/
+.divider {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 .section {
     margin-top: 20px;
     border-radius: 1.7rem;
@@ -98,6 +87,26 @@ nav .brand-logo {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+/*----- RECIPE -----*/
+.recipe-img {
+    border-radius: 1.7rem;
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.card .card-content .card-icons {
+    margin-top: 10px;
+}
+.card .card-content {
+    padding: 10px;
+}
+.btn-to-recipe {
+    width: 100%;
+    word-spacing: 2px;
+    text-transform: none;
 }
 .spacing {
     line-height: 30px;
@@ -112,22 +121,6 @@ nav .brand-logo {
 .list-item-height {
     margin-top: 15px;
 }
-.recipe-img {
-    border-radius: 1.7rem;
-    width: 100%;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-}
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
 
 /*----- Footer -----*/
 .page-footer {
@@ -137,6 +130,7 @@ main {
     margin-top: 20px;
     color: #eceff1;
 }
+
 /*----- Media Queries -----*/
 @media screen and (min-width: 600px) {
     nav .brand-logo {

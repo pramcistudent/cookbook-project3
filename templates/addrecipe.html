@@ -2,17 +2,18 @@
 
 <h4 class="heading center">Add a Recipe</h4>
 <div class="container">
-    <div class="row">
-        <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
+    <div class="section">
+        <p class="center">Complete all fields below to create your recipe.</p>
+        <form class="recipe-form" action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                <input required placeholder="Easy chocolate cake" id="recipe_title" name="recipe_title" type="text" class="validate">
-                <label for="recipe_title">Title</label>
+                <input required placeholder="Recipe Name" id="recipe_title" name="recipe_title" type="text" class="validate">
+                <label for="recipe_title">Recipe Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <textarea required placeholder="Foolproof and really easy chocolate cake recipe." id="recipe_short_description" class="materialize-textarea"></textarea>
+                <textarea required placeholder="Recipe Short Description" id="recipe_short_description" class="materialize-textarea"></textarea>
                 <label for="recipe_short_description">Recipe Short Description</label>
                 </div>
             </div>
@@ -107,7 +108,7 @@
                 </div>
             </div>
             <div class="row">
-                <button class="col s12 btn waves-effect waves-light" type="submit">Save Recipe</button>
+                <button class="col s12 btn medium-text waves-effect waves-light" type="submit">Save Recipe</button>
             </div>
         </form>
     </div>
