@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css" />
     <!-- CSS/Materialize Framework -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS Styles-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>Cookbook</title>
 </head>
 <body>
-    <!-- Page header -->
+    <!-- Header section -->
     <header>
         <div class="navbar-fixed">
             <nav>
@@ -22,73 +20,74 @@
             </nav>
         </div>
     </header>
-    <!-- Alert messages -->
-    <div class="container">
-        {% if success == True %}
-            <p class="red-text text-darken-4">You are successfully registered. Please login.</p>
-        {% elif success == False %}
-            <p class="red-text text-darken-4">Sorry that username already exists. Please use a different username.</p>
-        {% elif login == False %}
-            <p class="red-text text-darken-4">Login failed. Incorrect username or/and password. Please try again.</p>
-        {% endif %}
-    </div>    
-    <!-- Guest user -->
-    <div class="container">
-        <div class="section">
-            <h5 class="center heading">Guest User</h5>
-            <div class="divider"></div>
-            <div class="center">
-                <a href="{{url_for('guest_user')}}" class="btn waves-effect waves-light" type="submit">Continue</a>
-            </div>
-        </div>
-    </div>
-    <!-- login forms -->
-    <div class="container">
-        <div class="section">
-            <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s6"><a class="active" href="#sign-in">Sign In</a></li>
-                        <li class="tab col s6"><a href="#tsign-up">Sign Up</a></li>
-                    </ul>
-                </div>
-                 <!-- Sign In form -->
-                <div id="sign-in" class="col s12 center">
-                    <h5 class="heading">Login to your Account</h5>
-                    <form action="{{url_for('login')}}" method="POST">
-                        <div class="input-field">
-                            <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                            <label>Username</label>
-                        </div>
-                        <div class="input-field">
-                            <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                            <label>Password</label>
-                        </div>
-                        <button class="btn waves-effect waves-light" type="submit">Sign In</button>
-                    </form>
-                </div>
-                <!-- Sign up form -->
-                <div id="sign-up" class="col s12 center">
-                    <h5 class="heading">Sign Up</h5>
-                    <form action="{{url_for('register')}}" method="POST">
-                        <div class="input-field">
-                            <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
-                            <label>Full Name</label>
-                        </div>
-                        <div class="input-field">
-                            <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                            <label>Username</label>
-                        </div>
-                        <div class="input-field">
-                            <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                            <label>Password</label>
-                        </div>
-                        <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
-                    </form>
+    <main>
+        <!-- Alert messages -->
+        <div class="container">
+            {% if success == True %}
+                <p class="red-text text-darken-4">You are successfully registered. Please login.</p>
+            {% elif success == False %}
+                <p class="red-text text-darken-4">Sorry that username already exists. Please use a different username.</p>
+            {% elif login == False %}
+                <p class="red-text text-darken-4">Login failed. Incorrect username or/and password. Please try again.</p>
+            {% endif %}
+        </div>    
+        <!-- Guest user -->
+        <div class="container">
+            <div class="section">
+                <h5 class="heading center">Guest User</h5>
+                <div class="divider"></div>
+                <div class="center">
+                    <a href="{{url_for('guest_user')}}" class="btn waves-effect waves-light" type="submit">Continue</a>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Sign In / Sign Up -->
+        <div class="container container-width container-spacing">
+            <div class="section">
+                <div class="row">
+                    <!-- Form tabs -->
+                    <div class="col s12 form-tabs">
+                        <ul class="tabs">
+                            <li class="tab col s6"><a class="active" href="#sign-in">Sign In</a></li>
+                            <li class="tab col s6"><a href="#sign-up">Sign Up</a></li>
+                        </ul>
+                    </div>
+                    <!-- Sign In form -->
+                    <div id="sign-in" class="col s12 center">
+                        <form action="{{url_for('login')}}" method="POST">
+                            <div class="input-field">
+                                <input placeholder="Enter username" name="username" type="text" class="validate" required>
+                                <label>Username</label>
+                            </div>
+                            <div class="input-field">
+                                <input placeholder="Enter password" name="password" type="text" class="validate" required>
+                                <label>Password</label>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit">Sign In</button>
+                        </form>
+                    </div>
+                    <!-- Sign up form -->
+                    <div id="sign-up" class="col s12 center">
+                        <form action="{{url_for('register')}}" method="POST">
+                            <div class="input-field">
+                                <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
+                                <label>Full Name</label>
+                            </div>
+                            <div class="input-field">
+                                <input placeholder="Enter username" name="username" type="text" class="validate" required>
+                                <label>Username</label>
+                            </div>
+                            <div class="input-field">
+                                <input placeholder="Enter password" name="password" type="text" class="validate" required>
+                                <label>Password</label>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     
      <!-- Footer -->
     <footer class="page-footer footer-copyright black">
@@ -97,10 +96,5 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('select').material_select();
-        })
-    </script>
 </body>
 </html> 
