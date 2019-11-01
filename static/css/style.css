@@ -58,6 +58,11 @@ nav .brand-logo {
 .btn-spacing {
     margin-top: 20px;
 }
+.btn-recipe-card {
+    width: auto;
+    word-spacing: 2px;
+    text-transform: none;
+}
 .disabled {
     pointer-events: none !important;
 }
@@ -103,8 +108,17 @@ nav .brand-logo {
 .card .card-content .card-icons {
     margin-top: 10px;
 }
+.card .card-content .card-title {
+    font-size: 16px;
+    margin-bottom: 0;
+}
 .card .card-content {
     padding: 10px;
+}
+.card-image {
+    height: 250px;
+    overflow: hidden;
+    border-radius: 1.7rem;
 }
 .btn-to-recipe {
     width: 100%;
@@ -126,6 +140,19 @@ nav .brand-logo {
 }
 .results-display {
     margin-bottom: 0;
+}
+.tabs-spacing {
+    margin-bottom: 40px;
+}
+.container-spacing {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+.heading-spacing {
+    margin-top: 30px;
+}
+.recipe-form {
+    margin-top: 100px;
 }
 
 /*----- Footer -----*/
