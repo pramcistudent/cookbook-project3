@@ -60,8 +60,8 @@ def logout():
     return render_template('index.html')
 
 # My recipes page
-@app.route('/my_recipes/<username>')
-def my_recipes(username):
+@app.route('/my_recipes/<username>/page:<num>')
+def my_recipes(username, num):
     recipes=mongo.db.recipes.find()
     cuisines =  mongo.db.cuisines.find()
     dishes=mongo.db.dishes.find()
@@ -70,8 +70,17 @@ def my_recipes(username):
     if username is not None:
         my_recipes=mongo.db.recipes.find({'recipe_author_name': {'$regex': username, '$options': 'i'}})
         total_my_recipes=my_recipes.count()
-        print(username)
-    return render_template("user.html", recipes=recipes, dishes=dishes, cuisines=cuisines, my_recipes=my_recipes, 
+    total_pages = range(1, math.ceil(total_my_recipes/8) + 1)
+    skip_num = 8 * (int(num)-1)
+    recipes_per_page = recipes.skip(skip_num).limit(8)
+    if total_my_recipes < 8:
+        page_count = total_my_recipes
+    elif (int(num) * 8) < total_my_recipes:
+        page_count = int(num) * 8
+    else:
+        page_count = int(num) * 8 - total_my_recipes    
+    return render_template("myrecipes.html", recipes=recipes, dishes=dishes, cuisines=cuisines, my_recipes=my_recipes, 
+                            total_pages=total_pages, num=num, skip_num=skip_num, page_count=page_count,recipes_per_page=recipes_per_page,
                             users=users, total_my_recipes=total_my_recipes, allergens=allergens)    
 
 # Logout a user by removing username from session
