@@ -55,6 +55,9 @@ nav .brand-logo {
 .btn {
     background-color: #4ec5c1;
 }
+.btn-spacing {
+    margin-top: 20px;
+}
 .disabled {
     pointer-events: none !important;
 }
@@ -120,6 +123,9 @@ nav .brand-logo {
 }
 .list-item-height {
     margin-top: 15px;
+}
+.results-display {
+    margin-bottom: 0;
 }
 
 /*----- Footer -----*/
