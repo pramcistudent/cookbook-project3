@@ -145,21 +145,23 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipes.update( {'_id': ObjectId(recipe_id)},
-    {
-        'recipe_author_name': session['username'],
-        'recipe_title':request.form.get('recipe_title'),
-        'recipe_short_description':request.form.get('recipe_short_description'),
-        'recipe_image_url': request.form.get('recipe_image_url'),
-        'cuisine_name': request.form.get('cuisine_name'),
-        'dish_type':request.form.get('dish_type'),
-        'allergen_name':request.form.getlist('allergen_name'),
-        'recipe_prep_time':request.form.get('recipe_prep_time'),
-        'recipe_cook_time':request.form.get('recipe_cook_time'),
-        'total_time':request.form.get('total_time'),
-        'recipe_serves':request.form.get('recipe_serves'),
-        'recipe_ingredients':request.form.getlist('ingred'),
-        'recipe_steps':request.form.getlist('steps'),
-    })
+    { 
+            '$set':{
+                'recipe_author_name': session['username'],
+                'recipe_title':request.form.get('recipe_title'),
+                'recipe_short_description':request.form.get('recipe_short_description'),
+                'recipe_image_url': request.form.get('recipe_image_url'),
+                'cuisine_name': request.form.get('cuisine_name'),
+                'dish_type':request.form.get('dish_type'),
+                'allergen_name':request.form.getlist('allergen_name'),
+                'recipe_prep_time':request.form.get('recipe_prep_time'),
+                'recipe_cook_time':request.form.get('recipe_cook_time'),
+                'total_time':request.form.get('total_time'),
+                'recipe_serves':request.form.get('recipe_serves'),
+                'recipe_ingredients':request.form.getlist('ingred'),
+                'recipe_steps':request.form.getlist('steps')
+            }
+        })
     return redirect(url_for('my_recipes', username=session['username'], num=1))
 
 # Insert new recipe to DB collection
