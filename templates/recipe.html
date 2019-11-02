@@ -4,8 +4,8 @@
     <div class="row section spacing">
         <div class="col s12">
             <div class="row">
-                <div class="col s8 offset-s2 m5"><img class="recipe-img" src="{{recipe.recipe_image_url}}"></div>
-                <div class="col s8 offset-s2 m7">
+                <div class="col img-container s12 m5"><img class="recipe-img" src="{{recipe.recipe_image_url}}"></div>
+                <div class="col s12 m7">
                     <h5 class="small-heading">{{recipe.recipe_title}}</h5>
                         <span class="author-name">by <strong class="blue-grey-text text-darken-1">{{recipe.recipe_author_name}}</strong></span>
                     <p>
@@ -19,17 +19,17 @@
         </div>
     </div>
     {% if session.username %}
-    <div class="row section">
+    <div class="row section section-padding">
         <div class="col s6 center">
-            {% if session.username == recipe.recipe_author_name %}
-                <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}>">
+            {% if session.username.lower() == recipe.recipe_author_name.lower() %}
+            <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}"
                     <i class="material-icons icons black-text tooltipped" data-position="bottom" data-tooltip="Edit recipe">edit</i>
                 </a>
                 <div class="grey-text text-darken-1">Edit</div>
             {% endif%}
         </div>
         <div class="col s6 center">
-            {% if session.username == recipe.recipe_author_name %}
+            {% if session.username.lower() == recipe.recipe_author_name.lower() %}
                 <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}">
                         <i class="material-icons icons black-text tooltipped" data-position="bottom" data-tooltip="Delete recipe">delete</i>
                     </a>
@@ -40,16 +40,16 @@
     {% endif %}
     <div class="row spacing">
         <div class="col s12 m5 section">
-            <h5 class="small-heading center-text">Ingredients</h5>
+            <h5 class="small-heading center">Ingredients</h5>
             <ul>
                 {% for items in recipe.recipe_ingredients %}
-                <li class="list-item-height center-text">{{items}}</li>
+                <li class="list-item-height">{{items}}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="col s12 m1"></div>
         <div class="col s12 m6 section">
-            <h5 class="small-heading center-text">Method</h5>
+            <h5 class="small-heading center">Method</h5>
             <ol>
                 {% for items in recipe.recipe_steps %}
                 <li class="list-item-height">{{items}}</li>
