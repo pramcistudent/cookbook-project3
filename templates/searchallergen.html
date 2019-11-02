@@ -15,7 +15,8 @@
     </ul>
     
     <!-- Pagination -->
-    <ul class="pagination col s12 m6 right-align">
+    {% if total_pages[1] %}
+        <ul class="pagination col s12 m6 right-align">
         {% set num = num|int %}
         
         {% if total_pages %}
@@ -43,7 +44,8 @@
                 <a href="{{url_for('search_allergen', allergen_name=allergen_name, num = num+1)}}"><i class="material-icons">chevron_right</i></a>
             </li>
         {% endif %}
-    </ul>
+        </ul>
+    {% endif %}    
 </div>
 
 <div class="divider"></div>

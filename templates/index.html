@@ -55,8 +55,13 @@
                     <!-- Form tabs -->
                     <div class="col s12 tabs-spacing">
                         <ul class="tabs">
+                            {% if signin == True %}
                             <li class="tab col s6"><a class="active" href="#sign-in">Sign In</a></li>
                             <li class="tab col s6"><a href="#sign-up">Sign Up</a></li>
+                            {% else %}
+                            <li class="tab col s6"><a href="#sign-in">Sign In</a></li>
+                            <li class="tab col s6"><a class="active" href="#sign-up">Sign Up</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     

@@ -47,6 +47,9 @@ nav .brand-logo {
 .fa-user {
     padding-right: 10px;
 }
+.fav-icon-center {
+    padding-right: 13px;
+}
 .dropdown-content li>a {
     color: #fafafa;
 }

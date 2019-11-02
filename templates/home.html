@@ -8,14 +8,15 @@
     <!-- Result Summary -->
     <ul class="col s12 m6">
         {% if total_recipes == 0 %}
-            <li>Showing {{skip_num}} - {{skip_num + page_count}} of {{total_recipes}} Results</li>
+             <li>No Results found.</li>
         {% else %}
             <li>Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{total_recipes}} Results</li>
         {% endif %}
     </ul>
     
     <!-- Pagination -->
-    <ul class="pagination col s12 m6 right-align">
+    {% if total_pages[1] %}
+        <ul class="pagination col s12 m6 right-align">
         {% set num = num|int %}
         
         {% if total_pages %}
@@ -43,7 +44,8 @@
                 <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-to-recipe">View recipe <i class="material-icons right">chevron_right</i></a>
             </i>
         {% endif %}
-    </ul>
+        </ul>
+    {% endif %}
 </div>
 
 <div class="divider"></div>
