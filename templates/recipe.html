@@ -14,6 +14,17 @@
                         <i class="material-icons icon-height">schedule</i> Total Time: {{recipe.total_time}}<br>
                         <i class="material-icons icon-height">local_dining</i> Servings: {{recipe.recipe_serves}}<br>
                     </p>
+                    <p><strong>Cuisine name:</strong> {{recipe.cuisine_name}}</p>
+                    <p><strong>Dish type:</strong> {{recipe.dish_type}}</p>
+                    <p><strong>Allergens:</strong> 
+                    {% if recipe.allergen_name %}
+                        {% for allergen in recipe.allergen_name %}
+                            {% if allergen != recipe.allergen_name[-1] %}
+                                {{allergen}}, {% else %}{{allergen}}.
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}    
+                    </p>
                 </div>
             </div>
         </div>
