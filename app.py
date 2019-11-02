@@ -83,11 +83,12 @@ def logout():
 @app.route('/my_recipes/<username>/page:<num>')
 def my_recipes(username, num):
     if username is not None:
-        my_recipes=mongo.db.recipes.find({'recipe_author_name': {'$regex': username, '$options': 'i'}})
+        my_recipes = recipes.find({
+            'recipe_author_name': {'$regex': username, '$options': 'i'}}) 
         total_my_recipes=my_recipes.count()
     total_pages = range(1, math.ceil(total_my_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
-    recipes_per_page = recipes.skip(skip_num).limit(8)
+    recipes_per_page = my_recipes.skip(skip_num).limit(8)
     if total_my_recipes <= 8:
         page_count = total_my_recipes
     elif (int(num) * 8) < total_my_recipes:
@@ -100,33 +101,28 @@ def my_recipes(username, num):
                     page_count=page_count, total_my_recipes=total_my_recipes,
                     recipes_per_page=recipes_per_page)
 
-# Logout a user by removing username from session
+# Home page displaying all uploaded recipes
 @app.route('/all_recipes/page:<num>')
 def all_recipes(num):
-    total_recipes=recipes.count()
+    total_recipes=recipes.find().count()
     total_pages = range(1, math.ceil(total_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
-    recipes_per_page = recipes.skip(skip_num).limit(8)
+    recipes_per_page = recipes.find().skip(skip_num).limit(8)
     if total_recipes <= 8:
         page_count = total_recipes
-    elif (int(num) * 8) < total_recipes:
-        page_count = int(num) * 8
+    elif (skip_num + 8) <= total_recipes:
+        page_count = skip_num + 8
     else:
-        page_count = total_recipes - skip_num 
+        page_count = total_recipes
     return render_template("home.html", recipes=recipes.find(),
             dishes=dishes.find(), cuisines=cuisines.find(), users=users.find(), 
             allergens=allergens.find(), total_pages=total_pages, skip_num=skip_num, 
             num=num, page_count=page_count, recipes_per_page=recipes_per_page, 
             total_recipes=total_recipes)
 
-# Home page displaying all recipes
+# Displays detail view of a recipe
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
 def the_recipe(recipe_id, recipe_title):
-    recipes=mongo.db.recipes
-    cuisines =  mongo.db.cuisines.find()
-    dishes = mongo.db.dishes.find()
-    allergens=mongo.db.allergens.find()
-    users = mongo.db.users.find()
     return render_template("recipe.html", recipe = recipes.find_one(
             {'_id': ObjectId(recipe_id),'recipe_title': recipe_title}),
             cuisines=cuisines.find(), dishes=dishes.find(), allergens=allergens.find(), 
@@ -221,7 +217,7 @@ def search_cuisine(cuisine_name, num):
     total_pages = range(1, math.ceil(cuisine_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = cuisine_result.skip(skip_num).limit(8)
-    if cuisine_count <= 8:
+    if cuisine_count < 8:
         page_count = cuisine_count
     elif (int(num) * 8) < cuisine_count:
         page_count = int(num) * 8
