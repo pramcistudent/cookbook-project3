@@ -51,6 +51,7 @@
         <div class="container container-width container-spacing">
             <div class="section">
                 <div class="row">
+                    
                     <!-- Form tabs -->
                     <div class="col s12 tabs-spacing">
                         <ul class="tabs">
@@ -58,6 +59,7 @@
                             <li class="tab col s6"><a href="#sign-up">Sign Up</a></li>
                         </ul>
                     </div>
+                    
                     <!-- Sign In form -->
                     <div id="sign-in" class="col s12 center">
                         <form action="{{url_for('login')}}" method="POST">
@@ -72,6 +74,7 @@
                             <button class="btn btn-spacing waves-effect waves-light" type="submit">Sign In</button>
                         </form>
                     </div>
+                    
                     <!-- Sign up form -->
                     <div id="sign-up" class="col s12 center">
                         <form action="{{url_for('register')}}" method="POST">

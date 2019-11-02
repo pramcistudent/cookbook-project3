@@ -73,7 +73,7 @@ def my_recipes(username, num):
     total_pages = range(1, math.ceil(total_my_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = recipes.skip(skip_num).limit(8)
-    if total_my_recipes < 8:
+    if total_my_recipes <= 8:
         page_count = total_my_recipes
     elif (int(num) * 8) < total_my_recipes:
         page_count = int(num) * 8
@@ -95,7 +95,7 @@ def all_recipes(num):
     total_pages = range(1, math.ceil(total_recipes/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = recipes.skip(skip_num).limit(8)
-    if total_recipes < 8:
+    if total_recipes <= 8:
         page_count = total_recipes
     elif (int(num) * 8) < total_recipes:
         page_count = int(num) * 8
@@ -204,7 +204,7 @@ def search_dish(dish_type, num):
     total_pages = range(1, math.ceil(dish_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = dish_result.skip(skip_num).limit(8)
-    if dish_count < 8:
+    if dish_count <= 8:
         page_count = dish_count
     elif (int(num) * 8) < dish_count:
         page_count = int(num) * 8
@@ -226,7 +226,7 @@ def search_cuisine(cuisine_name, num):
     total_pages = range(1, math.ceil(cuisine_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = cuisine_result.skip(skip_num).limit(8)
-    if cuisine_count < 8:
+    if cuisine_count <= 8:
         page_count = cuisine_count
     elif (int(num) * 8) < cuisine_count:
         page_count = int(num) * 8
@@ -248,7 +248,7 @@ def search_allergen(allergen_name, num):
     total_pages = range(1, math.ceil(allergen_count/8) + 1)
     skip_num = 8 * (int(num)-1)
     recipes_per_page = allergen_result.skip(skip_num).limit(8)
-    if allergen_count < 8:
+    if allergen_count <= 8:
         page_count = allergen_count
     elif (int(num) * 8) < allergen_count:
         page_count = int(num) * 8
