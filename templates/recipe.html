@@ -13,7 +13,7 @@
                         <i class="material-icons">schedule</i> Total Time: {{recipe.total_time}}<br>
                         <i class="material-icons">local_dining</i> Servings: {{recipe.recipe_serves}}<br>
                     </p>
-                    {% if session.username %}
+                    {% if session.username == recipe.recipe_author_name %}
                     <p>
                         <a href="{{url_for('edit_recipe', recipe_id = recipe._id)}}" class="btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Edit recipe"><i class="material-icons">edit</i></a>
                         <a href="{{url_for('delete_recipe', recipe_id = recipe._id)}}" class="btn-floating waves-effect waves-light black tooltipped" data-position="bottom" data-tooltip="Delete recipe"><i class="material-icons">delete</i></a> 

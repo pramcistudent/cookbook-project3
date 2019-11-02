@@ -61,8 +61,7 @@
         <div class="card-content">
             <!-- Title/Author -->
             <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
-            <span class="small-text">by <strong>{{recipe.recipe_author_name}}</strong></span>
-
+            <span class="small-text">by <strong class="purple-text text-darken-4">{{recipe.recipe_author_name}}</strong></span>
             <!-- Link to recipe details -->
             <div class="s12 m12">
                 <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-recipe-card">View recipe <i class="material-icons right">chevron_right</i></a>
