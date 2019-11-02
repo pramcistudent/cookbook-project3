@@ -14,23 +14,26 @@
         {% endif %}
     </ul>
     
-    <!-- Pagination -->
+    <!-- Pagination when total pages are more than one-->
     {% if total_pages[1] %}
         <ul class="pagination col s12 m6 right-align">
         {% set num = num|int %}
         
+        <!-- Sets value of last_page and total_pages -->
         {% if total_pages %}
             {% set last_page = total_pages[-1]|int %}
         {% else %}
             {% set last_page = 0|int %}{% set total_pages = 0|int %}
         {% endif %}
         
+        <!-- Only enables left chevron when page 1 is not active -->
         {% if last_page > 1 %}
             <li {% if request.path.replace(' ','%20') == url_for('search_allergen', allergen_name=allergen_name, num = 1) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('search_allergen', allergen_name=allergen_name, num = num-1)}}"><i class="material-icons">chevron_left</i></a>
             </li>
         {% endif %}
         
+        <!-- Activates the page selected -->
         {% if total_pages != 0 %}
             {% for num in total_pages %}
                 <li {% if request.path.replace(' ','%20') == url_for('search_allergen', allergen_name=allergen_name, num = num) %}class="active" {% endif %}>
@@ -39,6 +42,7 @@
             {% endfor %}
         {% endif %}
         
+        <!-- Only enables right chevron when last page is not active -->
         {% if last_page > 1 %}
             <li {% if request.path.replace(' ','%20') == url_for('search_allergen', allergen_name=allergen_name, num = last_page) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
                 <a href="{{url_for('search_allergen', allergen_name=allergen_name, num = num+1)}}"><i class="material-icons">chevron_right</i></a>

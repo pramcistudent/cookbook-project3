@@ -56,11 +56,11 @@
                     <div class="col s12 tabs-spacing">
                         <ul class="tabs">
                             {% if signin == True %}
-                            <li class="tab col s6"><a class="active" href="#sign-in">Sign In</a></li>
-                            <li class="tab col s6"><a href="#sign-up">Sign Up</a></li>
+                                <li class="tab col s6"><a class="active" href="#sign-in">Sign In</a></li>
+                                <li class="tab col s6"><a href="#sign-up">Sign Up</a></li>
                             {% else %}
-                            <li class="tab col s6"><a href="#sign-in">Sign In</a></li>
-                            <li class="tab col s6"><a class="active" href="#sign-up">Sign Up</a></li>
+                                <li class="tab col s6"><a href="#sign-in">Sign In</a></li>
+                                <li class="tab col s6"><a class="active" href="#sign-up">Sign Up</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -69,12 +69,12 @@
                     <div id="sign-in" class="col s12 center">
                         <form action="{{url_for('login')}}" method="POST">
                             <div class="input-field">
-                                <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                                <label>Username</label>
+                                <input placeholder="Enter username" id="username" name="username" type="text" class="validate" required>
+                                <label for="username">Username</label>
                             </div>
                             <div class="input-field">
-                                <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                                <label>Password</label>
+                                <input placeholder="Enter password" id="password" name="password" type="text" class="validate" required>
+                                <label for="password">Password</label>
                             </div>
                             <button class="btn btn-spacing waves-effect waves-light" type="submit">Sign In</button>
                         </form>
@@ -84,16 +84,16 @@
                     <div id="sign-up" class="col s12 center">
                         <form action="{{url_for('register')}}" method="POST">
                             <div class="input-field">
-                                <input placeholder="Enter your full name" name="fullname" type="text" class="validate" required>
-                                <label>Full Name</label>
+                                <input placeholder="Enter your full name" id="fullname" name="fullname" type="text" class="validate" required>
+                                <label for="fullname">Full Name</label>
                             </div>
                             <div class="input-field">
-                                <input placeholder="Enter username" name="username" type="text" class="validate" required>
-                                <label>Username</label>
+                                <input placeholder="Enter username" id="username" name="username" type="text" class="validate" required>
+                                <label for="username">Username</label>
                             </div>
                             <div class="input-field">
-                                <input placeholder="Enter password" name="password" type="text" class="validate" required>
-                                <label>Password</label>
+                                <input placeholder="Enter password" id="password" name="password" type="text" class="validate" required>
+                                <label for="password">Password</label>
                             </div>
                             <button class="btn btn-spacing waves-effect waves-light" type="submit">Sign Up</button>
                         </form>
