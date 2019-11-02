@@ -1,6 +1,7 @@
 {% extends 'base.html' %}{% block content %}
 
-<h4 class="heading center">All Recipes</h4>
+<!-- Heading -->
+<h4 class="heading center heading-spacing">All Recipes</h4>
 
 <div class="row results-display">
     
@@ -15,24 +16,25 @@
     
     <!-- Pagination -->
     <ul class="pagination col s12 m6 right-align">
-        {% set num = num|int %} 
-            {% if total_pages %}{% set last_page = total_pages[-1]|int %}
+        {% set num = num|int %}
+        
+        {% if total_pages %}
+            {% set last_page = total_pages[-1]|int %}
         {% else %}
-            {% set last_page = 0|int %}
-            {% set total_pages = 0|int %}
+            {% set last_page = 0|int %}{% set total_pages = 0|int %}
         {% endif %}
         
         {% if last_page > 1 %}
-        <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
-            <a href="{{url_for('all_recipes', num = num-1)}}"><i class="material-icons">chevron_left</i></a>
-        </li>
+            <li {% if request.path==u rl_for( 'all_recipes', num=1 ) %} class="disabled" {% else %} class="waves-effect" {% endif %}>
+                <a href="{{url_for('all_recipes', num = num-1)}}"><i class="material-icons">chevron_left</i></a>
+            </li>
         {% endif %} 
         
         {% if total_pages!= 0 %}
             {% for num in total_pages %}
-            <li {% if request.path == url_for('all_recipes', num = num) %}class="active" {% endif %}>
-                <a href="{{url_for('all_recipes', num = num)}}">{{num}}</a>
-            </li>
+                <li {% if request.path == url_for('all_recipes', num = num) %}class="active" {% endif %}>
+                    <a href="{{url_for('all_recipes', num = num)}}">{{num}}</a>
+                </li>
             {% endfor %}
         {% endif %}
         
@@ -41,7 +43,6 @@
                 <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-to-recipe">View recipe <i class="material-icons right">chevron_right</i></a>
             </i>
         {% endif %}
-        
     </ul>
 </div>
 
@@ -51,20 +52,25 @@
 <div class="row">
     {% for recipe in recipes_per_page %}
     <div class="card medium col s8 offset-s2 m6 l3">
+        
         <!-- Image -->
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" height="250" src="{{recipe.recipe_image_url}}">
+            <img class="activator responsive-img" src="{{recipe.recipe_image_url}}" alt="dish image">
         </div>
+        
         <!-- Content -->
         <div class="card-content">
             <!-- Title/Author -->
             <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
             <span class="small-text">by <strong class="purple-text text-darken-4">{{recipe.recipe_author_name}}</strong></span>
+            
             <!-- Link to recipe details -->
             <div class="s12 m12">
                 <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-to-recipe">View recipe <i class="material-icons right">chevron_right</i></a>
             </div>
         </div>
+        
+        <!-- Short recipe description -->
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">
                 <i class="material-icons right">close</i>{{recipe.recipe_title}}
@@ -74,4 +80,5 @@
     </div>    
     {% endfor %}
 </div>
+
 {% endblock %} 
