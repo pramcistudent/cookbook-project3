@@ -14,6 +14,9 @@ main {
 nav {
     background-color: black;
 }
+nav ul a:hover {
+    background-color: #9e9e9e;
+}
 nav .brand-logo {
     font-size: 25px;
     word-spacing: 2px;
@@ -38,25 +41,27 @@ nav .brand-logo {
     padding: 0 0.5rem;
     color: #fafafa;
 }
+.btn-flat {
+    font-size: 22px;
+    margin-top: -5px;
+}
 .capitalize {
     text-transform: capitalize;
 }
 .fas {
+    font-size: 16px;
     padding-right: 5px;
 }
 .fa-user {
     padding-right: 10px;
 }
-.fav-icon-center {
-    padding-right: 13px;
-}
-.dropdown-content li>a {
-    color: #fafafa;
-}
 
 /*----- BUTTON -----*/
 .btn {
-    background-color: #4ec5c1;
+    background-color: #000000de;
+    border-radius: 1.3rem;
+    word-spacing: 5px;
+    width: 130px;
 }
 .btn-spacing {
     margin-top: 20px;
@@ -85,12 +90,13 @@ nav .brand-logo {
     font-size: 18px;
     word-spacing: 2px;
 }
+.name {
+    font-size: 16px;
+    line-height: 2.5;
+    text-transform: uppercase;
+}
 
 /*----- LOGIN / REGISTER -----*/
-.divider {
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
 .section {
     margin-top: 20px;
     border-radius: 1.7rem;
@@ -115,18 +121,19 @@ nav .brand-logo {
     font-size: 16px;
     margin-bottom: 0;
 }
+.card .card-reveal {
+    background-color: rgba(255, 255, 255, 0.6);
+}
 .card .card-content {
-    padding: 10px;
+    padding: 10px 0;
 }
 .card-image {
     height: 250px;
     overflow: hidden;
     border-radius: 1.7rem;
 }
-.btn-to-recipe {
-    width: 100%;
-    word-spacing: 2px;
-    text-transform: none;
+.card {
+    margin: 3rem 0 1rem 0;
 }
 .spacing {
     line-height: 30px;
@@ -136,7 +143,6 @@ nav .brand-logo {
 }
 .small-heading {
     margin-bottom: 10px;
-    text-shadow: 0px 0px 5px rgba(0,0,0,0.4);
 }
 .list-item-height {
     margin-top: 15px;
@@ -172,6 +178,9 @@ nav .brand-logo {
 .section-padding {
     padding: 10px;
 }
+.pagination li.active {
+    background-color: #000000de;
+}
 
 /*----- Footer -----*/
 .page-footer {
@@ -185,6 +194,18 @@ nav .brand-logo {
 /*----- Media Queries -----*/
 @media screen and (min-width: 600px) {
     nav .brand-logo {
-        font-size: 45px;
+        font-size: 38px;
+    }
+    .container-width {
+        width: 60%;
+    }
+    .heading::before,
+    .heading::after {
+        width: 50px;
+    }
+}
+@media screen and (min-width: 992px) {
+    .container-width {
+        width: 50%;
     }
 }

@@ -8,9 +8,9 @@
     <!-- Result Summary -->
     <ul class="col s12 m6">
         {% if count == 0 %}
-            <li>Showing {{skip_num}} - {{skip_num + page_count}} of {{count}} Results</li>
+            <li>No Results found.</li>
         {% else %}
-            <li>Showing {{skip_num + 1}} - {{skip_num + page_count}} of {{count}} Results</li>
+            <li>Showing {{skip_num + 1}} - {{page_count}} of {{count}} Results</li>
         {% endif %}
     </ul>
     
@@ -36,7 +36,9 @@
         <!-- Activates the page selected -->
         {% if total_pages != 0 %}
             {% for num in total_pages %}
-                <li {% if request.path.replace(' ','%20') == url_for('search_dish', dish_type=dish_type, num = num) %}class="active" {% endif %}><a href="{{url_for('search_dish', dish_type=dish_type, num = num)}}">{{num}}</a></li>
+                <li {% if request.path.replace(' ','%20') == url_for('search_dish', dish_type=dish_type, num = num) %}class="active" {% endif %}>
+                    <a href="{{url_for('search_dish', dish_type=dish_type, num = num)}}">{{num}}</a>
+                </li>
             {% endfor %}
         {% endif %}
         
@@ -54,7 +56,7 @@
 
 <div class="row">
     {% for recipe in recipes_per_page %}
-    <div class="card medium col s8 offset-s2 m6 l3">
+    <div class="card medium hoverable col s8 offset-s2 m6 l3">
         
         <!-- Image -->
         <div class="card-image waves-effect waves-block waves-light">
@@ -67,8 +69,8 @@
             <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
             <span class="small-text">by <strong class="purple-text text-darken-4">{{recipe.recipe_author_name}}</strong></span>
             <!-- Link to recipe details -->
-            <div class="s12 m12">
-                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-to-recipe">View recipe <i class="material-icons right">chevron_right</i></a>
+            <div class="center s12 m12">
+                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-recipe-card">View recipe<i class="material-icons right"></i></a>
             </div>
         </div>
         
