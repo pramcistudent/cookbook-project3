@@ -1,73 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Icons -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Fonts/Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" type="text/css"/>
     <!-- CSS/Materialize Framework -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS Styles-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css"/>
     <title>Cookbook</title>
 </head>
 <body>
+    <!-- Header -->
     <header>
+        
+        <!-- Dropdown content for Desktop view -->
         <ul id="user-options1" class="dropdown-content">
-            <li><a href="{{url_for('my_recipes', username = session.username, num=1)}}"><i class="fas fa-book-open white-text"></i> My recipes</a></li>
-            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="{{url_for('my_recipes', username = session.username, num=1)}}"><i class="fas fa-book-open purple-text" aria-hidden = "true"></i> My recipes</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt purple-text" aria-hidden = "true"></i> Logout</a></li>
         </ul>
+        
+        <!-- Dropdown content for Mobile view -->
         <ul id="user-options2" class="dropdown-content">
-            <li><a href="{{url_for('my_recipes', username = session.username, num=1)}}"><i class="fas fa-book-open white-text"></i> My recipes</a></li>
-            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="{{url_for('my_recipes', username = session.username, num=1)}}"><i class="fas fa-book-open purple-text" aria-hidden = "true"></i> My recipes</a></li>
+            <li><a href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt purple-text" aria-hidden = "true"></i> Logout</a></li>
         </ul>
+        
+        <!-- Navbar for desktop view -->
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper">
                     <a href="{{url_for('all_recipes', num=1)}}" class="brand-logo"><span class=" white-text"> Cookbook</span></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item">Home</a></li>
+                        <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item"> Home </a></li>
+                        <!-- Displayed for registered users only -->
                         {% if session.username %}
-                        <li><a href="{{url_for('add_recipe')}}" class="nav-item">Add recipe</a></li>
-                        <li><a href="#" class="dropdown-button nav-item user-dropdown" data-activates="user-options1"><i class="fas fa-user white-text"></i><span class="white-text">Logged in as {{session.username}}</span></a></li>
+                            <li><a href="{{url_for('add_recipe')}}" class="nav-item"> Add recipe </a></li>
+                            <li><a href="#" class="dropdown-button nav-item user-dropdown" data-activates="user-options1"><i class="fas fa-user white-text"></i><span class="white-text"> {{session.username}}</span></a></li>
                         {% else %}
-                        <li><a href="{{url_for('index')}}" class="nav-item"> Login</a></li>
+                            <li><a href="{{url_for('signin')}}" class="nav-item">Sign in </a></li>
+                            <li><a href="{{url_for('signup')}}" class="nav-item">Sign up</a></li>
                         {% endif %}
                     </ul>
+                    
+                    <!-- Dropdown content for Mobile view -->
+                    <!-- Dropdown filter for dish type -->
                     <ul id="dishes2" class="dropdown-content">
                         {% for dish in dishes %} 
-                        <li><a href="{{url_for('search_dish', dish_type=dish.dish_type, num=1)}}">{{dish.dish_type}}</a></li>
+                            <li><a href="{{url_for('search_dish', dish_type=dish.dish_type, num=1)}}">{{dish.dish_type}}</a></li>
                         {% endfor %}
                     </ul>
+                    
+                    <!-- Dropdown filter for cuisine -->
                     <ul id="cuisines2" class="dropdown-content">
                         {% for cuisine in cuisines %} 
-                        <li><a href="{{url_for('search_cuisine', cuisine_name=cuisine.cuisine_name, num=1)}}">{{cuisine.cuisine_name}}</a></li>
+                            <li><a href="{{url_for('search_cuisine', cuisine_name=cuisine.cuisine_name, num=1)}}">{{cuisine.cuisine_name}}</a></li>
                         {% endfor %}
                     </ul>
+                    
+                    <!-- Dropdown filter for allergens -->
                     <ul id="allergens2" class="dropdown-content">
                         {% for allergen in allergens %}
                             {% if allergen.allergen_name != 'No allergens' %}
-                            <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
+                                <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>
+                    
+                    <!-- Navbar for Mobile view -->
                     <ul class="side-nav" id="mobile-demo">
+                        <!-- Displayed for registered users only -->
                         {% if session.username %}
-                        <li class="black"><a href="#!" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user white-text"></i><span class="white-text">Logged in as {{session.username}}</span></a></li>
+                            <li class="black"><a href="#!" class="dropdown-button nav-item" data-activates="user-options2"><i class="fas fa-user white-text"></i><span class="white-text"> {{session.username}}</span></a></li>
                         {% endif %}
                         <li><a href="{{url_for('all_recipes', num=1)}}" class="nav-item">Home</a></li>
+                        
+                        <!-- Displayed for registered users only -->
                         {% if session.username %}
-                        <li><a href="{{url_for('add_recipe')}}" class="nav-item">Add recipe</a></li>
+                            <li><a href="{{url_for('add_recipe')}}" class="nav-item">Add recipe</a></li>
                         {% else %}
-                        <li><a href="{{url_for('index')}}" class="nav-item"> Login</a></li>
+                            <li><a href="{{url_for('signin')}}" class="nav-item">Sign in </a></li>
+                            <li><a href="{{url_for('signup')}}" class="nav-item">Sign up</a></li>
                         {% endif %}
-                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="dishes2">Dish Types <i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="cuisines2">Cuisines <i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a class="dropdown-button waves-effect waves-light btn-flat" data-activates="allergens2">Allergens <i class="material-icons right">arrow_drop_down</i></a></li>
+                        
+                        <!-- Navbar search by cuisine, dish type, allergen for mobile view -->
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat text-lighten-2" data-activates="dishes2">Dish Types <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat text-lighten-2" data-activates="cuisines2">Cuisines <i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a class="dropdown-button waves-effect waves-light btn-flat text-lighten-2" data-activates="allergens2">Allergens <i class="material-icons right">arrow_drop_down</i></a></li>
                     </ul>
                 </div>
             </nav>
         </div>
+        
+        <!-- Navbar search by cuisine, dish type, allergen for desktop view -->
         <nav class="filters">
             <div class="nav-wrapper row">
                 <ul class="hide-on-med-and-down col l8">
@@ -75,32 +104,44 @@
                     <li><a class="dropdown-button waves-effect waves-light btn-flat btn-nav" data-activates='cuisines1'>Cuisines <i class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a class="dropdown-button waves-effect waves-light btn-flat btn-nav" data-activates='allergens1'>Allergens <i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
+                
+                <!-- Dropdown content for desktop view -->
+                <!-- Dropdown filter for dish type -->
                 <ul id="dishes1" class="dropdown-content">
                     {% set _stub = dishes.rewind() %}
                     {% for dish in dishes %} 
                         <li><a href="{{url_for('search_dish', dish_type=dish.dish_type, num=1)}}">{{dish.dish_type}}</a></li>
                     {% endfor %}
                 </ul>
+                
+                <!-- Dropdown filter for cuisine -->
                 <ul id="cuisines1" class="dropdown-content">
                     {% set _stub = cuisines.rewind() %}
                     {% for cuisine in cuisines %} 
                         <li><a href="{{url_for('search_cuisine', cuisine_name=cuisine.cuisine_name, num=1)}}">{{cuisine.cuisine_name}}</a></li>
-                  {% endfor %}
-                </ul>    
+                    {% endfor %}
+                </ul>
+                
+                <!-- Dropdown filter for allergens -->
                 <ul id="allergens1" class="dropdown-content">
                     {% set _stub = allergens.rewind() %}
                     {% for allergen in allergens %}
                         {% if allergen.allergen_name != 'No allergens' %}
-                        <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
+                            <li><a href="{{url_for('search_allergen', allergen_name=allergen.allergen_name, num=1)}}">{{allergen.allergen_name}}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
             </div>
         </nav>
     </header>
+    
+    <!-- Main section -->
     <main>
-    <!-- Block content -->
-    {% block content %}{% endblock %}
+        
+        <!-- Block content -->
+        {% block content %}
+        {% endblock %}
+        
     </main>
     
     <!-- Footer -->
@@ -113,22 +154,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script>
         $(document).ready(function(){
+            
+            // materializecss initialisation codes
             $("select[required]").css({display: "block", height: 0, padding: 0, width: 0, position: 'absolute'});
             $(".dropdown-button").dropdown();
             $(".button-collapse").sideNav();
             $('select').material_select();
+            
+            // variables defined
             var delete_icon = '<i class="material-icons">delete</i></a></div></div>';
             var ingredient_field = `<div class="row new-ingredient"> <div class="input-field col s10 m11">
-                    <input type="text" name="ingred" class="validate">
+                    <input type="text" name="ingred" class="validate" required>
                     <label>Ingredients</label></div>
-                    <div class="col s2 m1"><a class="btn-floating waves-effect waves-light black" id="delete_ingredient">
-                    ${delete_icon}`;
+                    <div class="col s2 m1"><a class="btn-floating waves-effect waves-light black" id="delete_ingredient"> 
+                   ${delete_icon}`;
             var step_field = `<div class="row new-step"> <div class="input-field col s10 m11">
-                    <textarea id="recipe_steps" name="steps" class="materialize-textarea"></textarea>
-                    <label>Cooking Steps</label></div>
-                    <div class="col s2 m1"><a class="btn-floating waves-effect waves-light black" id="delete_step">
-                    ${delete_icon}`;
-                    
+                    <textarea name="steps" class="materialize-textarea" class="validate" required></textarea>
+                    <label>Steps</label></div>
+                    <div class="col s2 m1"><a class="btn-floating waves-effect waves-light black" id="delete_step"> 
+                   ${delete_icon}`;
+            
             // add and remove ingredient
             $("#add_ingredient").click(function() {
                 $("#ingredients").append(ingredient_field);
@@ -143,7 +188,6 @@
                 $("#steps").append(step_field);
                 Materialize.updateTextFields();
             });
-            
             $("body").on("click","#delete_step", function() {
                 $(this).parents(".new-step").remove();
             });
