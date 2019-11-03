@@ -57,7 +57,7 @@
 <!-- Recipes display -->
 <div class="row">
     {% for recipe in recipes_per_page %}
-    <div class="card medium col s8 offset-s2 m6 l3">
+    <div class="card medium hoverable col s8 offset-s2 m6 l3">
         
         <!-- Image -->
         <div class="card-image waves-effect waves-block waves-light">
@@ -68,10 +68,10 @@
         <div class="card-content">
             <!-- Title/Author -->
             <span class="card-title activator grey-text text-darken-4">{{recipe.recipe_title}}<i class="material-icons right">more_vert</i></span>
-            <span class="small-text">by <strong>{{recipe.recipe_author_name}}</strong></span>
+            <span class="small-text">by <strong class="purple-text text-darken-4">{{recipe.recipe_author_name}}</strong></span>
             <!-- Link to recipe details -->
-            <div class="s12 m12">
-                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-recipe-card">View recipe <i class="material-icons right">chevron_right</i></a>
+            <div class="center s12 m12">
+                <a href="{{url_for('the_recipe', recipe_id = recipe._id, recipe_title = recipe.recipe_title)}}" class="btn btn-recipe-card">View recipe <i class="material-icons right"></i></a>
             </div>
         </div>
         
