@@ -61,7 +61,7 @@ nav .brand-logo {
     background-color: #000000de;
     border-radius: 1.3rem;
     word-spacing: 5px;
-    width: 130px;
+    width: auto;
 }
 .btn-spacing {
     margin-top: 20px;
@@ -73,6 +73,9 @@ nav .brand-logo {
 }
 .disabled {
     pointer-events: none !important;
+}
+.btn:hover, .btn-large:hover {
+    background-color: #949494;
 }
 
 /*----- HEADER / TITLE / TEXT -----*/
