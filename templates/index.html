@@ -4,7 +4,7 @@
     <!-- CSS/Materialize Framework -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Custom CSS Styles-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Cookbook</title>
 </head>
 <body>
@@ -26,27 +26,26 @@
     <main>
         
         <!-- Alert messages -->
-        <div class="container">
+        <div class="container container-width">
             {% if success == True %}
-                <p class="red-text text-darken-4">You are successfully registered. Please login.</p>
+                <p class="center red-text text-accent-3">You are successfully registered. Please login.</p>
             {% elif success == False %}
-                <p class="red-text text-darken-4">Sorry that username already exists. Please use a different username.</p>
+                <p class="center red-text text-accent-3">Sorry that username already exists. Please use a different username.</p>
             {% elif login == False %}
-                <p class="red-text text-darken-4">Login failed. Incorrect username or/and password. Please try again.</p>
+                <p class="center red-text text-accent-3">Login failed. Incorrect username or/and password. Please try again.</p>
             {% endif %}
         </div>
-        
+
         <!-- Guest user -->
-        <div class="container">
-            <div class="section">
-                <h5 class="heading center">Guest User</h5>
-                <div class="divider"></div>
-                <div class="center">
-                    <a href="{{url_for('guest_user')}}" class="btn btn-spacing waves-effect waves-light" type="submit">Continue</a>
+        <div class="container container-width container-spacing">
+            <div class="section center">
+                <h5 class="heading">Guest User</h5>
+                <div>
+                    <a href="{{url_for('guest_user')}}" class="btn btn-spacing waves-effect waves-light">Continue</a>
                 </div>
             </div>
         </div>
-        
+
         <!-- Sign In / Sign Up -->
         <div class="container container-width container-spacing">
             <div class="section">
@@ -103,7 +102,7 @@
         </div>
     </main>
     
-     <!-- Footer -->
+    <!-- Footer -->
     <footer class="page-footer footer-copyright black">
         <p class="center"> © 2019 Cookbook</p>
     </footer>
@@ -112,4 +111,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </body>
-</html> 
+</html>

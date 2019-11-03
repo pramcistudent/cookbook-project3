@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <textarea placeholder="Recipe Short Description" id="recipe_short_description" name="recipe_short_description" class="materialize-textarea" required>{{recipe.recipe_short_description}}</textarea>
-                    <label for="recipe_short_description">Short Description</label>
+                    <label for="recipe_short_description">Recipe Short Description</label>
                 </div>
             </div>
             
@@ -95,7 +95,7 @@
                 <!-- Prep Time -->
                 <div class="input-field col s6">
                     <input placeholder="60 mins" id="recipe_prep_time" name="recipe_prep_time" type="text" class="validate" value="{{recipe.recipe_prep_time}}" required>
-                    <label for="recipe_prep_time">Prep. Time</label>
+                    <label for="recipe_prep_time">Prep Time</label>
                 </div>
                 <!-- Cook Time -->
                 <div class="input-field col s6">
@@ -135,11 +135,11 @@
                     </div>
                     {% else %}
                     <div class="row new-ingredient"> 
-                        <div class="input-field col s11">
+                        <div class="input-field col s10 m11">
                             <input type="text" name="ingred" class="validate" value="{{item}}" required>
-                            <label>Ingredient(s)</label>
+                            <label>Ingredients</label>
                         </div>
-                        <div class="col s1">
+                        <div class="col s2 m1">
                             <a class="btn-floating waves-effect waves-light black" id="delete_ingredient"><i class="material-icons">delete</i></a>
                         </div>
                     </div>    
@@ -165,12 +165,12 @@
                     </div>
                     {% else %}
                     <div class="row new-step"> 
-                        <div class="input-field col s11">
+                        <div class="input-field col s10 m11">
                             <textarea id="recipe_steps" name="steps" class="materialize-textarea" required>{{item}}</textarea>
                             <label for="recipe_steps">Cooking Steps</label>
                         </div>
-                        <div class="col s1">
-                            <a class="btn-floating waves-effect waves-light black" id="delete_step"><i class="material-icons">delete</i></a>
+                        <div class="col s2 m1">
+                            <a class="btn-floating waves-effect black" id="delete_step"><i class="material-icons">delete</i></a>
                         </div>
                     </div>
                     {% endif %}
@@ -179,10 +179,10 @@
             
             <!-- Submit button -->
             <div class="row">
-                <button class="col s12 btn medium-text waves-effect waves-light" type="submit">Save Recipe</button>
+                <button class="col s12 btn medium-text waves-effect waves-light" type="submit">Update Recipe</button>
             </div>
         </form>
     </div>
 </div>
 
-{% endblock %} 
+{% endblock %}
