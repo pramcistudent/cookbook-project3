@@ -28,24 +28,22 @@ I received inspiration for the styling of my app from a website I came across ca
     - Flask is a microframework that I've used to render the back-end Python with the front-end Materialize.
 ## Features
 ### Existing Features
-**Register Account**
 - Anybody can register for free and create their own unique account.
-**Log In to Account**
+**Register Account**
 - For existing users passwords and username must match the database.
-**Log Out of Account**
+**Log In to Account**
 - Users can easily log out of their account with the click of a button.
-**View All Recipe**
+**Log Out of Account**
 - On the *home* page, all recipes are initially displayed with 8-items per page using pagination.
-**Add a Recipe**
+**View All Recipe**
 - [**C**RUD] Create or 'add' a new recipe. 
-**View a Recipe**
+**Add a Recipe**
 - [C**R**UD] Read or 'review' recipes, either from the main page, or from the...
-**Update a Recipe**
+**View a Recipe**
 - [CR**U**D] Update or 'edit' their own user recipes on this page.
-**Delete a Recipe**
+**Update a Recipe**
 - [CRU**D**] Delete or 'remove' a user's own recipes.
-**Save a Recipe to Favorites**
-- Users can save their own recipes, or recipes submitted by other users, directly into their profile for quicker access next time.
+**Delete a Recipe**
 ### Features Left to Implement
 Hash passwording for login / Register
 print / email receipe
