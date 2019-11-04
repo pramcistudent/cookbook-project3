@@ -38,7 +38,7 @@ I received inspiration for the styling of my app from a website I came across ca
 - **Update a Recipe** - [CR**U**D] Update or 'edit' is available only when the user is logged in. Clicking it takes the user to the Edit Recipe page and only the author of the recipe can edit the recipe.
 - **Delete a Recipe** - [CRU**D**] Delete or 'remove' recipe is only available if the user is logged in and if the user added that recipe.
 ### Features Left to Implement
--In an ideal world, there are a couple functions that I would've loved to have completed but didn't have the time or knowledge on how to implement these features.
+In an ideal world, there are a couple functions that I would've loved to have completed but didn't have the time or knowledge on how to implement these features.
 - **Hash pass-wording** - This feature is a must for any app that requires users to enter their personal details.
 - **Print / Email** - Being able to print the recipe as well as able to email the recipe to friends and family. This also allows targeted email marketing.
 - **Account profile** - Allows for the user to personalise their account and add additional information about the user such as images etc.
@@ -144,7 +144,7 @@ All tests were carried out manually. Testing process was as follows:
 * Click on *Delete* icon and verify that:
     * user is redirected to *My Recipes* page.
     * recipe is deleted from *My recipes* page and from the app.
-##### Welcome, username (Registered users only)
+##### Username (Registered users only)
 ###### My recipes 
 * Verify that all recipes displayed on *My recipes* page are current users recipes.
 ###### Logout 
@@ -164,7 +164,6 @@ Following features were verified:
 - [W3C CSS Validator tool](https://jigsaw.w3.org/css-validator/#validate_by_input) used to validate my CSS code.
 - [Esprima Syntax Validator tool](http://esprima.org/demo/validate.html) used to validate my JavaScript syntax.
 - [Pep8 Online tool](http://pep8online.com/) used to validate my Python syntax.
-##### Cross Browser Testing
 ##### Cross Browser Testing
 - [CanIuse.com](https://caniuse.com/) - was used to check browser support for CSS codes and use correct prefixes, where required.
 - The website was tested to function as expected on following browsers:
@@ -189,6 +188,7 @@ Next, there's a series of steps to take in order to proceed with local deploymen
 - Install all requirements from the [requirements.txt](https://github.com/pramcistudent/cookbook-project3/blob/master/requirements.txt) file using this command:
     - `sudo -H pip3 -r requirements.txt`
 - Sign up for a free account on [MongoDB](https://www.mongodb.com) and create a new Database called **Cookbook**. The *Collections* in that database should be as follows:
+- 
 **ALLERGENS**
 ```
 _id: <ObjectId>
