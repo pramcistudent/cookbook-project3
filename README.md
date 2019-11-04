@@ -28,32 +28,34 @@ I received inspiration for the styling of my app from a website I came across ca
     - Flask is a microframework that I've used to render the back-end Python with the front-end Materialize.
 ## Features
 ### Existing Features
-- Anybody can register for free and create their own unique account.
 **Register Account**
-- For existing users passwords and username must match the database.
+- Anybody can register for free and create their own unique account. 
 **Log In to Account**
-- Users can easily log out of their account with the click of a button.
+- Allows new users to register for a free account. The form's username field only accepts alphanumeric values.
 **Log Out of Account**
-- On the *home* page, all recipes are initially displayed with 8-items per page using pagination.
+- Allows users to logout of their account by clicking the 'Logout' link in the navbar/sidenav. Upon clicking the button, the user session ends.
+- **Flash Messages** 
+- Displayed at the top of the page below the navbar. These messages differ based on user interaction and provides helper messages for users.
 **View All Recipe**
-- [**C**RUD] Create or 'add' a new recipe. 
+- On the *home* page pagination is used for the unfiltered results to display 8 recipes per page. The previous page button is only available if there is a previous page. The next page button is only available if there is a next page.
 **Add a Recipe**
-- [C**R**UD] Read or 'review' recipes, either from the main page, or from the...
+- [**C**RUD] Create or 'add' a new recipe will be available for users who are logged in. The 'Add' button is located in navigation bar next to the username. This will take the user to a full page form that will allow them to submit detailed information about a new recipe as well as adding an image (a remotely hosted image, added by URL) dynamically adding and removing ingredients and steps in the recipe method.
 **View a Recipe**
-- [CR**U**D] Update or 'edit' their own user recipes on this page.
+- [C**R**UD] Read or 'review' recipes, either from the main page, or the user recipe page. Users can click on the recipe card to displays the recipe's full details on a page.
 **Update a Recipe**
-- [CRU**D**] Delete or 'remove' a user's own recipes.
+- [CR**U**D] Update or 'edit' is available only when the user is logged in. Clicking it takes the user to the Edit Recipe page and only the author of the recipe can edit the recipe.
 **Delete a Recipe**
+- [CRU**D**] Delete or 'remove' recipe is only available if the user is logged in and if the user added that recipe.
 ### Features Left to Implement
-Hash passwording for login / Register
-print / email receipe
-Account profile page
-Favorites page
-Commets section
-Date recipe added
-Able to upload image
-Star ratings
-Allow for multipul images of the recipe to be displayed
+- Hash passwording for login / Register
+- print / email receipe
+- Account profile page
+- Favorites page
+- Commets section
+- Date recipe added
+- Able to upload image
+- Star ratings
+- Allow for multipul images of the recipe to be displayed
 ## Technologies Used
 
 

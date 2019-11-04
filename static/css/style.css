@@ -42,7 +42,7 @@ nav .brand-logo {
     color: #fafafa;
 }
 .btn-flat {
-    font-size: 22px;
+    font-size: 15px;
     margin-top: -5px;
 }
 .capitalize {
@@ -133,6 +133,12 @@ nav .brand-logo {
 .card-image {
     height: 250px;
     overflow: hidden;
+    border-radius: 1.7rem;
+}
+.card.medium {
+    margin-bottom: 2rem;
+    height: 350px;
+    padding: .75rem;
     border-radius: 1.7rem;
 }
 .card {
