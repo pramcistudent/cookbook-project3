@@ -188,7 +188,7 @@ Next, there's a series of steps to take in order to proceed with local deploymen
 - Install all requirements from the [requirements.txt](https://github.com/pramcistudent/cookbook-project3/blob/master/requirements.txt) file using this command:
     - `sudo -H pip3 -r requirements.txt`
 - Sign up for a free account on [MongoDB](https://www.mongodb.com) and create a new Database called **Cookbook**. The *Collections* in that database should be as follows:
-- 
+
 **ALLERGENS**
 ```
 _id: <ObjectId>
