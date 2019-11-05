@@ -1,6 +1,35 @@
 # [Cookbook](https:)
 
 This project is part of my [Code Institute](https://codeinstitute.net/) Full Stack Software Development, specifically the **Data Centric Development** module. The objective for this milestone project is to "*Create a web application that allows users to store and easily access cooking recipes*", using the **CRUD** operations of **C**reate, **R**ead, **U**pdate, and **D**elete for their recipes.
+
+---
+## Table of Contents
+1. [**UX**](#ux)
+    - [**User Stories**](#user-stories)
+    - [**Design**](#design)
+2. [**Features**](#features)
+    - [**Existing Features**](#existing-features)
+    - [**Features Left to Implement**](#features-left-to-implement)
+3. [**Technologies Used**](#technologies-used)
+    - [**Version Control**](#version-control)
+    - [**Hosting**](#hosting)
+4. [**Testing**](#testing)
+    - [**Login Page**](#login-page)
+    - [**Home Page**](#home-page)
+    - [**Add Recipe Page (Registered users only)**](#add-recipe-page)
+    - [**Recipe Details Page**](#recipe-details-page)
+    - [**Username (Registered users only)**](#username)
+    - [**Responsiveness Testing**](#responsiveness-testing)
+5. [**Code Validation**](#code-validation)
+    - [**Cross Browser Testing**](#cross-browser-testing)
+6. [**Deployment**](#deployment)
+    - [**Local Deployment**](#local-deployment)
+    - [**Remote Deployment**](#remote-deployment)
+7. [**Credits**](#credits)
+    - [**Content**](#content)
+    - [**Acknowledgements**](#acknowledgements)
+---
+
 ## UX
 This application is an online cookbook - a place where users can find recipes for any occasion. Users can also create their own free account and add any number of recipes which they can share with other users and visitors.
 The front-end display and functionality uses HTML, CSS and JavaScript. The back-end functionality uses Python, Flask and MongoDB.
@@ -241,14 +270,24 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 3. Sign up for a free Heroku account, create your project app, and click the **Deploy** tab, at which point you can *Connect GitHub* as the Deployment Method, and select *Enable Automatic Deployment*.
 4. In the Heroku **Settings** tab, click on the *Reveal Config Vars* button to configure environmental variables as follows:
     - **IP** : `0.0.0.0`
-    - **PORT** : `8080`
+    - **PORT** : `5000`
     - **MONGO_URI** : `<link to your Mongo DB>`
     - **SECRET_KEY** : `<your own secret key>`
 5. Your app should be successfully deployed to Heroku at this point.
-
-
 ## Credits
-
 #### Content
-
+- Template Inheritance - [Jinja Article](https://jinja.palletsprojects.com/en/2.10.x/templates/)
+- Flash Messages - [Flask Article](https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/)
+- Register and Login page backend code - [Pretty Printed](https://www.youtube.com/watch?list=PLXmMXHVSvS-Db9KK1LA7lifcyZm4c-rwj&v=vVx1737auSE&app=desktop) & [Flask docs](http://flask.pocoo.org/docs/1.0/quickstart/#sessions) 
+- How to convert strings to integers - [stackoverflow](https://stackoverflow.com/questions/38857366/integer-gets-converted-to-string-when-passed-into-jinja-template)
+- For Loops - [stackoverflow](https://stackoverflow.com/questions/34877236/for-loop-not-working-in-jinja-flask)
+- Dynamically adding and removing form input fields - [Youtube video](https://www.youtube.com/watch?v=jSSRMC0F6u8)
+- Pagination - [Codementor](https://www.codementor.io/arpitbhayani/fast-and-efficient-pagination-in-mongodb-9095flbqr) & [Flask-paginate](https://pythonhosted.org/Flask-paginate/) & [Stackoverflow](https://stackoverflow.com/questions/8676455/flask-current-page-in-request-variable)
+- Bug found in materializecss **disabled** class was used to disable left and right chevron in pagination [Resolved issue](https://github.com/Dogfalo/materialize/issues/3835)  
+- Recipe for my site - [BBC Food Website](https://www.bbc.co.uk/food)
 #### Acknowledgements
+- I would like to thank my mentor [Guido Cecilio](https://github.com/guidocecilio) for all her help and support during the development of this project. 
+- I would also like to thank other code institute students for sharing their projects which was extremely useful in designing this website. 
+- Thanks to the Slack community for their feedback help on how to debug my Python code.
+### Disclaimer
+This project is for educational purposes only.
