@@ -1,4 +1,4 @@
-# [Cookbook](https:)
+# [Cookbook](https://git.heroku.com/cookbook-project3.git)
 
 This project is part of my [Code Institute](https://codeinstitute.net/) Full Stack Software Development, specifically the **Data Centric Development** module. The objective for this milestone project is to "*Create a web application that allows users to store and easily access cooking recipes*", using the **CRUD** operations of **C**reate, **R**ead, **U**pdate, and **D**elete for their recipes.
 
@@ -288,6 +288,6 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 #### Acknowledgements
 - I would like to thank my mentor [Guido Cecilio](https://github.com/guidocecilio) for all her help and support during the development of this project. 
 - I would also like to thank other code institute students for sharing their projects which was extremely useful in designing this website. 
-- Thanks to the Slack community for their feedback help on how to debug my Python code.
+- Thanks to the Slack community for their feedback and help on how to debug my Python code.
 ### Disclaimer
 This project is for educational purposes only.
