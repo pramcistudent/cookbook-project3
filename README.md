@@ -1,4 +1,4 @@
-# [Cookbook](https://git.heroku.com/cookbook-project3.git)
+# [Cookbook](https://cookbook-project3.herokuapp.com/)
 
 This project is part of my [Code Institute](https://codeinstitute.net/) Full Stack Software Development, specifically the **Data Centric Development** module. The objective for this milestone project is to "*Create a web application that allows users to store and easily access cooking recipes*", using the **CRUD** operations of **C**reate, **R**ead, **U**pdate, and **D**elete for their recipes.
 
