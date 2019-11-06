@@ -3,6 +3,7 @@
 This project is part of my [Code Institute](https://codeinstitute.net/) Full Stack Software Development, specifically the **Data Centric Development** module. The objective for this milestone project is to "*Create a web application that allows users to store and easily access cooking recipes*", using the **CRUD** operations of **C**reate, **R**ead, **U**pdate, and **D**elete for their recipes.
 
 ---
+
 ## Table of Contents
 1. [**UX**](#ux)
     - [**User Stories**](#user-stories)
@@ -28,6 +29,7 @@ This project is part of my [Code Institute](https://codeinstitute.net/) Full Sta
 7. [**Credits**](#credits)
     - [**Content**](#content)
     - [**Acknowledgements**](#acknowledgements)
+
 ---
 
 ## UX
@@ -55,6 +57,11 @@ I received inspiration for the styling of my app from a website I came across ca
     - In an effort to keep the JavaScript minimal, I have decided to use jQuery as foundation to my scripts framework.
 - [Flask 1.0.2](http://flask.pocoo.org/)
     - Flask is a microframework that I've used to render the back-end Python with the front-end Materialize.
+
+##### back to [top](#table-of-contents)
+
+---
+
 ## Features
 ### Existing Features
 - **Register Account** - Anybody can register for free and create their own unique account.
@@ -76,6 +83,11 @@ In an ideal world, there are a couple functions that I would've loved to have co
 - **Date recipe added** - Shows when the recipe was added to the database.
 - **Able to upload images** - Currently you can only use the URL to upload an image, having an additional feature which allows the user to upload from local a drive.
 - **Recipe star ratings** - Upvote is the simplest way for any user to see how popular a recipe is, this can then be used to sort recipes by most liked.
+
+##### back to [top](#table-of-contents)
+
+---
+
 ## Technologies Used
 - [**HTML**](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
     - The project uses **HTML** to create the basic elements and content of my app.
@@ -109,6 +121,11 @@ In an ideal world, there are a couple functions that I would've loved to have co
 ### Hosting
 - [**Heroku**](https://www.heroku.com/)
     - I've used **Heroku** as the hosting platform to deploy my app.
+
+##### back to [top](#table-of-contents)
+
+---
+
 ## Testing
 All tests were carried out manually. Testing process was as follows:
 ##### Login Page
@@ -201,6 +218,11 @@ Following features were verified:
   - IE 
   - Edge 
   - Safari
+
+##### back to [top](#table-of-contents)
+
+---
+
 ## Deployment
 ### Local Deployment
 Please note - in order to run this project locally on your own system, you will need the following installed:
@@ -211,7 +233,7 @@ Please note - in order to run this project locally on your own system, you will 
 - [MongoDB](https://www.mongodb.com) to develop your own database either locally or remotely on MongoDB Atlas.
 Next, there's a series of steps to take in order to proceed with local deployment:
 - Clone this GitHub repository by either clicking the green *Clone or download* button and downloading the project as a zip-file (remember to unzip it first), or by entering the following into the Git CLI terminal:
-    - `https://github.com/pramcistudent/cookbook-project3.git`.
+    - `https://github.com/pramcistudent/cookbook-project3.git`
 9. Navigate to the `.bashrc` terminal and add your MongoDB URI in the following format:
     - `MONGO_URI="insert your mongo uri details here"`
 - Install all requirements from the [requirements.txt](https://github.com/pramcistudent/cookbook-project3/blob/master/requirements.txt) file using this command:
@@ -274,6 +296,11 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
     - **MONGO_URI** : `<link to your Mongo DB>`
     - **SECRET_KEY** : `<your own secret key>`
 5. Your app should be successfully deployed to Heroku at this point.
+
+##### back to [top](#table-of-contents)
+
+---
+
 ## Credits
 #### Content
 - Template Inheritance - [Jinja Article](https://jinja.palletsprojects.com/en/2.10.x/templates/)
@@ -286,8 +313,12 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 - Bug found in materializecss **disabled** class was used to disable left and right chevron in pagination [Resolved issue](https://github.com/Dogfalo/materialize/issues/3835)  
 - Recipe for my site - [BBC Food Website](https://www.bbc.co.uk/food)
 #### Acknowledgements
-- I would like to thank my mentor [Guido Cecilio](https://github.com/guidocecilio) for all her help and support during the development of this project. 
+- I would like to thank my mentor [Guido Cecilio](https://github.com/guidocecilio) for all his help and support during the development of this project. 
 - I would also like to thank other code institute students for sharing their projects which was extremely useful in designing this website. 
 - Thanks to the Slack community for their feedback and help on how to debug my Python code.
 ### Disclaimer
 This project is for educational purposes only.
+
+##### back to [top](#table-of-contents)
+
+---
