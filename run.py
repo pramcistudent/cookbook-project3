@@ -56,7 +56,7 @@ def register():
     return render_template('index.html', success=success)
 
 # Check data submitted via Login form
-@app.route('/logout', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -77,7 +77,7 @@ def guest_user():
     return redirect(url_for('all_recipes', num=1))
 
 # Logout user by removing username from session
-@app.route('/login')
+@app.route('/logout')
 def logout():
     session.clear()
     return render_template('index.html')
