@@ -75,7 +75,7 @@ I received inspiration for the styling of my app from a website I came across ca
 - **Delete a Recipe** - [CRU**D**] Delete or 'remove' recipe is only available if the user is logged in and if the user added that recipe.
 ### Features Left to Implement
 In an ideal world, there are a couple functions that I would've loved to have completed but didn't have the time or knowledge on how to implement these features.
-- **Hash pass-wording** - This feature is a must for any app that requires users to enter their personal details.
+- **Hash pass-wording** - Best practice for any app that requires users to enter their personal details.
 - **Print / Email** - Being able to print the recipe as well as able to email the recipe to friends and family. This also allows targeted email marketing.
 - **Account profile** - Allows for the user to personalise their account and add additional information about the user such as images etc.
 - **Favorites** - Quick and easy to way for the user to review and store recipes they like.
@@ -83,6 +83,7 @@ In an ideal world, there are a couple functions that I would've loved to have co
 - **Date recipe added** - Shows when the recipe was added to the database.
 - **Able to upload images** - Currently you can only use the URL to upload an image, having an additional feature which allows the user to upload from local a drive.
 - **Recipe star ratings** - Upvote is the simplest way for any user to see how popular a recipe is, this can then be used to sort recipes by most liked.
+- **Buy the ingredients** - Feature to take the user, for example to a site where the ingredients can be purchased.
 
 ##### back to [top](#table-of-contents)
 
