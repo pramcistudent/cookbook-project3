@@ -23,6 +23,7 @@ nav .brand-logo {
     letter-spacing: 4px;
     padding-left: 20px;
     font-family: 'Liu Jian Mao Cao';
+    font-weight: 900;
 }
 .nav-item {
     text-transform: uppercase;
@@ -69,7 +70,6 @@ nav .brand-logo {
 .btn-recipe-card {
     width: auto;
     word-spacing: 2px;
-    text-transform: none;
 }
 .disabled {
     pointer-events: none !important;
@@ -87,10 +87,6 @@ nav .brand-logo {
 }
 .small-text {
     font-size: 12px;
-    word-spacing: 2px;
-}
-.medium-text {
-    font-size: 18px;
     word-spacing: 2px;
 }
 .name {
@@ -124,25 +120,31 @@ nav .brand-logo {
     font-size: 16px;
     margin-bottom: 0;
 }
+.card .card-title {
+    font-size: 16px;
+}
 .card .card-reveal {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 .card .card-content {
     padding: 10px 0;
 }
-.card-image {
-    height: 250px;
-    overflow: hidden;
-    border-radius: 1.7rem;
+.recipe-preview-card 
+.results-card {
+    border-radius: 1rem;
 }
-.card.medium {
-    margin-bottom: 2rem;
-    height: 350px;
-    padding: .75rem;
-    border-radius: 1.7rem;
+.recipe-preview-card
+.results-card 
+.card-image img {
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
 }
-.card {
-    margin: 3rem 0 1rem 0;
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0.1rem;
+    height: 5rem;
+    overflow-y: auto;
 }
 .spacing {
     line-height: 30px;
@@ -205,16 +207,9 @@ nav .brand-logo {
     nav .brand-logo {
         font-size: 38px;
     }
-    .container-width {
-        width: 60%;
-    }
-    .heading::before,
-    .heading::after {
-        width: 50px;
-    }
-}
-@media screen and (min-width: 992px) {
-    .container-width {
-        width: 50%;
+    .recipe-preview-card 
+    .results-card 
+    .card-image img {
+    height: 10rem;
     }
 }

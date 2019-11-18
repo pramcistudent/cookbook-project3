@@ -23,8 +23,18 @@
     </header>
     
     <!-- Main section -->
-    <main>
+    <main class="container">
         
+        <!-- Guest user -->
+        <div class="container container-width container-spacing">
+            <div class="section center">
+                <h5 class="heading">Guest User</h5>
+                <div>
+                    <a href="{{url_for('guest_user')}}" class="btn btn-spacing waves-effect waves-light">Continue</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Alert messages -->
         <div class="container container-width">
             {% if success == True %}
@@ -34,16 +44,6 @@
             {% elif login == False %}
                 <p class="center red-text text-accent-3">Login failed. Incorrect username or/and password. Please try again.</p>
             {% endif %}
-        </div>
-
-        <!-- Guest user -->
-        <div class="container container-width container-spacing">
-            <div class="section center">
-                <h5 class="heading">Guest User</h5>
-                <div>
-                    <a href="{{url_for('guest_user')}}" class="btn btn-spacing waves-effect waves-light">Continue</a>
-                </div>
-            </div>
         </div>
 
         <!-- Sign In / Sign Up -->
