@@ -64,8 +64,8 @@ I received inspiration for the styling of my app from a website I came across ca
 
 ## Features
 ### Existing Features
-- **Register Account** - Anybody can register for free and create their own unique account.
-- **Log In to Account** - Allows new users to register for a free account. The form's username field only accepts alphanumeric values.
+- **Register Account** - Allows new users to register for a free account. The form's username field only accepts alphanumeric values. I've included checks to ensure that the username doesn't already exist in the database before users are successfully registered. Passwords stored in the database are hashed for security purposes.
+- **Log In to Account** - Allows existing users to login to their account. The form's username field only accepts alphanumeric values. I've included authorization checks to verify the username and password (hashed password) against the details stored in the database before users can be logged in.
 - **Log Out of Account** - Allows users to logout of their account by clicking the 'Logout' link in the navbar/sidenav. Upon clicking the button, the user session ends.
 - **Flash Messages** - Displayed at the top of the page below the navbar. These messages differ based on user interaction and provides helper messages for users.
 - **View All Recipe** - On the *home* page pagination is used for the unfiltered results to display 8 recipes per page. The previous page button is only available if there is a previous page. The next page button is only available if there is a next page.
@@ -75,14 +75,13 @@ I received inspiration for the styling of my app from a website I came across ca
 - **Delete a Recipe** - [CRU**D**] Delete or 'remove' recipe is only available if the user is logged in and if the user added that recipe.
 ### Features Left to Implement
 In an ideal world, there are a couple functions that I would've loved to have completed but didn't have the time or knowledge on how to implement these features.
-- **Hash pass-wording** - Best practice for any app that requires users to enter their personal details.
-- **Print / Email** - Being able to print the recipe as well as able to email the recipe to friends and family. This also allows targeted email marketing.
+- **Print / Email** - Being able to print the recipe as well as able to email the recipe to friends and family.
 - **Account profile** - Allows for the user to personalise their account and add additional information about the user such as images etc.
 - **Favorites** - Quick and easy to way for the user to review and store recipes they like.
-- **User comments** - Having a comments section allows for all users to review feedback on recipes.
+- **User comments** - Having a comments section allows for all users to review and leave feedback on recipes.
 - **Date recipe added** - Shows when the recipe was added to the database.
-- **Able to upload images** - Currently you can only use the URL to upload an image, having an additional feature which allows the user to upload from local a drive.
-- **Recipe star ratings** - Upvote is the simplest way for any user to see how popular a recipe is, this can then be used to sort recipes by most liked.
+- **Able to upload images** - Currently you can only use the URL to upload an image, having an additional feature which allows the user to upload from a local drive.
+- **Recipe star ratings** - Upvote so users can see how popular a recipe is, this can then be used to sort recipes by most liked.
 - **Buy the ingredients** - Feature to take the user, for example to a site where the ingredients can be purchased.
 
 ##### back to [top](#table-of-contents)

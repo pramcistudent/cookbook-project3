@@ -56,6 +56,9 @@ nav .brand-logo {
 .fa-user {
     padding-right: 10px;
 }
+.search-icon {
+    transform: translateY(-15%);
+}
 
 /*----- BUTTON -----*/
 .btn {

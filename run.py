@@ -3,6 +3,7 @@ import math
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+import bcrypt
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'cookbook'
@@ -36,39 +37,35 @@ def signup():
 
 
 # Check data submitted via Registration form
-@app.route('/register', methods=['POST'])
+@app.route('/register',methods=['GET','POST'])
 def register():
-    fullname = request.form.get('fullname')
-    username = request.form.get('username')
-    password = request.form.get('password')
-    registered = users.find_one({
-        'username': {'$regex': username, '$options': 'i'}
-    })
-    if registered is None:
-        users.insert_one({
-            'username': username,
-            'fullname': fullname,
-            'password': password
-        })
-        success = True
-        return render_template('index.html', success=success)
+    """Render the registration page"""
+    if request.method == 'POST':
+        existing_user = users.find_one({'username' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert_one(
+              { 'username' : request.form['username'], 'password' : hashpass, 'fullname' : request.form['fullname'] } )
+            session['username'] = request.form['username']
+            success = True
+            return render_template('index.html', success=success)
     success = False
     return render_template('index.html', success=success)
 
 # Check data submitted via Login form
-@app.route('/login', methods=['POST'])
+@app.route('/login',methods=['GET','POST'])
 def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    registered = users.find_one({
-        'username': {'$regex': username, '$options': 'i'}, 
-        'password': password
-    })
-    if registered is not None:
-        session['username'] = username
-        login = True
-        return redirect(url_for('all_recipes', num=1))
-    login = False    
+    if request.method == 'POST':
+        db_user = users.find_one({'username': request.form['username']})
+
+        if db_user:
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'), db_user['password']) == db_user['password']:
+                session['username'] = request.form['username']
+                session['logged_in'] = True
+                login = True
+                return redirect(url_for('all_recipes', num=1))
+    login = False
     return render_template('index.html', login=login)
 
 # Redirects guest users to home page
@@ -261,6 +258,37 @@ def search_allergen(allergen_name, num):
             recipes_per_page=recipes_per_page, count=allergen_count, dishes=dishes.find(), 
             cuisines=cuisines.find(), users=users.find(), allergens=allergens.find())
 
+
+@app.route('/search_keyword', methods=['POST'])
+def insert_keyword():
+    return redirect(url_for('search_keyword', num=1, keyword=request.form.get('keyword')))
+
+@app.route('/search_keyword/<keyword>/page:<num>')
+def search_keyword(keyword, num):
+    recipes.create_index([
+         ("recipe_title", "text"),
+         ("recipe_ingredients", "text"),
+         ("cuisine_name", "text"),
+         ("dish_type", "text"),
+         ("recipe_author_name", "text")
+       ])
+    keyword_result = recipes.find({"$text": 
+        {"$search": keyword}})
+    keyword_count = keyword_result.count()
+    total_pages = range(1, math.ceil(keyword_count/8) + 1)
+    skip_num = 8 * (int(num)-1)
+    recipes_per_page = keyword_result.skip(skip_num).limit(8)
+    
+    if keyword_count <= 8:
+        page_count = keyword_count
+    elif (skip_num + 8) <= keyword_count:
+        page_count = skip_num + 8
+    else:
+        page_count = keyword_count
+    return render_template('searchkeyword.html', total_pages=total_pages, num=num, 
+            keyword=keyword, recipes_per_page=recipes_per_page, skip_num=skip_num, 
+            page_count=page_count, count=keyword_count, dishes=dishes.find(), 
+            cuisines=cuisines.find(), users=users.find(), allergens=allergens.find())
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'), 
