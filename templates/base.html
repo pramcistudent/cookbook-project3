@@ -131,16 +131,6 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
-                <!-- Search Bar -->
-                <form class="col s12 l4" action="{{url_for('search_keyword', keyword=keyword, num=1)}}" method="POST">
-                    <div class="input-field">
-                        <input placeholder="Search by keyword" name="keyword" id="search" type="search" required>
-                        <label class="label-icon" for="search">
-                            <i class="material-icons search-icon">search</i>
-                        </label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
             </div>
         </nav>
     </header>
