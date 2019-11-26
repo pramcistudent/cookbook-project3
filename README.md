@@ -8,6 +8,7 @@ This project is part of my [Code Institute](https://codeinstitute.net/) Full Sta
 1. [**UX**](#ux)
     - [**User Stories**](#user-stories)
     - [**Design**](#design)
+    - [**Wireframes**](#Wireframes)
 2. [**Features**](#features)
     - [**Existing Features**](#existing-features)
     - [**Features Left to Implement**](#features-left-to-implement)
@@ -50,6 +51,12 @@ The front-end display and functionality uses HTML, CSS and JavaScript. The back-
 - be able to log out.
 ### Design
 I received inspiration for the styling of my app from a website I came across called [**_A Basic Cook_**](http://www.abasiccook.com/). I thought the clean simplistic look of the site looked really modern and professional, so I wanted to reflect this in my own app.
+### Wireframes
+I drew my wireframes using Powerpoint. I have different wireframes to show how to make my website/app responsive. The links to the files are below:
+- [Home - (Guest User / Sign Up / Sign In))](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/home.PNG)
+- [Browse - (View Recipe Cards)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/browse.PNG)
+- [Recipe - (View Details / Edit / Delete)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/recipe.PNG)
+- [Add Recipe](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/add-recipe.PNG)
 #### Framework
 - [Materialize 1.0.0](https://materializecss.com/)
     - I really like the modern and clean layout of Materialize as a framework, with its simple-to-understand documentation.
