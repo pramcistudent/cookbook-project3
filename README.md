@@ -53,7 +53,7 @@ The front-end display and functionality uses HTML, CSS and JavaScript. The back-
 I received inspiration for the styling of my app from a website I came across called [**_A Basic Cook_**](http://www.abasiccook.com/). I thought the clean simplistic look of the site looked really modern and professional, so I wanted to reflect this in my own app.
 ### Wireframes
 I drew my wireframes using Powerpoint. I have different wireframes to show how to make my website/app responsive. The links to the files are below:
-- [Home - (Guest User / Sign Up / Sign In))](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/home.PNG)
+- [Home - (Guest User / Sign Up / Sign In)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/home.PNG)
 - [Browse - (View Recipe Cards)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/browse.PNG)
 - [Recipe - (View Details / Edit / Delete)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/recipe.PNG)
 - [Add Recipe](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/add-recipe.PNG)
@@ -65,7 +65,7 @@ I drew my wireframes using Powerpoint. I have different wireframes to show how t
 - [Flask 1.0.2](http://flask.pocoo.org/)
     - Flask is a microframework that I've used to render the back-end Python with the front-end Materialize.
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
 
@@ -91,7 +91,7 @@ In an ideal world, there are a couple functions that I would've loved to have co
 - **Recipe star ratings** - Upvote so users can see how popular a recipe is, this can then be used to sort recipes by most liked.
 - **Buy the ingredients** - Feature to take the user, for example to a site where the ingredients can be purchased.
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
 
@@ -129,7 +129,7 @@ In an ideal world, there are a couple functions that I would've loved to have co
 - [**Heroku**](https://www.heroku.com/)
     - I've used **Heroku** as the hosting platform to deploy my app.
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
 
@@ -194,7 +194,7 @@ All tests were carried out manually. Testing process was as follows:
   * Click on *Save changes* and verify that:
     * user is redirected to *My Recipes* page.
     * recipe is successfully changed
-* Click on *Delete* icon and verify that:
+* Click on *Delete* icon will trigger the Delete modal, which asks the user to confirm the deletion request and verify that:
     * user is redirected to *My Recipes* page.
     * recipe is deleted from *My recipes* page and from the app.
 ##### Username (Registered users only)
@@ -226,7 +226,7 @@ Following features were verified:
   - Edge 
   - Safari
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
 
@@ -282,7 +282,7 @@ recipe_steps: <array>
 **USERS**
 ```
 _id: <ObjectId>
-fullnamee: <string>
+fullname: <string>
 username: <string>
 password: <string>
 ```
@@ -304,7 +304,7 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
     - **SECRET_KEY** : `<your own secret key>`
 5. Your app should be successfully deployed to Heroku at this point.
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
 
@@ -326,6 +326,6 @@ This site is currently deployed on [Heroku](https://www.heroku.com/) using the *
 ### Disclaimer
 This project is for educational purposes only.
 
-##### back to [top](#table-of-contents)
+##### [back to top](#table-of-contents)
 
 ---
