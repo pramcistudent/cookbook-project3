@@ -11,6 +11,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI", 'mongodb://localhost')
 app.config['SECRET_KEY'] = os.urandom(24)
 mongo = PyMongo(app)
 
+
 # DB Variables
 users = mongo.db.users
 recipes = mongo.db.recipes
@@ -18,16 +19,19 @@ cuisines = mongo.db.cuisines
 dishes = mongo.db.dishes
 allergens = mongo.db.allergens
 
+
 # Login / Registration page
 @app.route('/')
 def index():
     return render_template("index.html")
+
 
 # Sign in tab
 @app.route('/signin')
 def signin():
     signin = True
     return render_template("index.html", signin=signin)
+
 
 # Sign up tab
 @app.route('/signup')
@@ -48,10 +52,9 @@ def register():
             users.insert_one(
               { 'username' : request.form['username'], 'password' : hashpass, 'fullname' : request.form['fullname'] } )
             session['username'] = request.form['username']
-            success = True
-            return render_template('index.html', success=success)
-    success = False
-    return render_template('index.html', success=success)
+            return render_template('index.html', success=True)
+    return render_template('index.html', success=False)
+
 
 # Check data submitted via Login form
 @app.route('/login', methods=['GET','POST'])
@@ -63,21 +66,22 @@ def login():
             if bcrypt.hashpw(request.form['password'].encode('utf-8'), db_user['password']) == db_user['password']:
                 session['username'] = request.form['username']
                 session['logged_in'] = True
-                login = True
                 return redirect(url_for('all_recipes', num=1))
-    login = False
     return render_template('index.html', login=login)
+
 
 # Redirects guest users to home page
 @app.route('/guest_user')
 def guest_user():
     return redirect(url_for('all_recipes', num=1))
 
+
 # Logout user by removing username from session
 @app.route('/logout')
 def logout():
     session.clear()
     return render_template('index.html')
+
 
 # My recipes page
 @app.route('/my_recipes/<username>/page:<num>')
@@ -104,6 +108,7 @@ def my_recipes(username, num):
                     page_count=page_count, total_my_recipes=total_my_recipes,
                     recipes_per_page=recipes_per_page)  
 
+
 # Home page displaying all uploaded recipes
 @app.route('/all_recipes/page:<num>')
 def all_recipes(num):
@@ -123,6 +128,7 @@ def all_recipes(num):
             allergens=allergens.find(), total_pages=total_pages, skip_num=skip_num, 
             num=num, page_count=page_count, recipes_per_page=recipes_per_page, 
             total_recipes=total_recipes)
+   
     
 # Displays detail view of a recipe
 @app.route('/the_recipe/<recipe_id>/<recipe_title>')
@@ -132,6 +138,7 @@ def the_recipe(recipe_id, recipe_title):
             recipe=recipes.find_one({'_id': ObjectId(recipe_id),
             'recipe_title': recipe_title}))
 
+
 # Display form to add a recipe
 @app.route('/add_recipe')
 def add_recipe():
@@ -139,12 +146,14 @@ def add_recipe():
             dishes=dishes.find(), recipes=recipes.find(), users=users.find(), 
             allergens=allergens.find())
 
+
 # Display form to edit the recipe
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
     return render_template('editrecipe.html', cuisines=cuisines.find(), 
             dishes=dishes.find(), allergens=allergens.find(), users=users.find(),
             recipe=recipes.find_one({"_id": ObjectId(recipe_id)}))
+
 
 # Send form data to update recipe in DB
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
@@ -169,6 +178,7 @@ def update_recipe(recipe_id):
         })
     return redirect(url_for('my_recipes', username=session['username'], num=1))
 
+
 # Insert new recipe to DB collection
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
@@ -192,11 +202,13 @@ def insert_recipe():
     recipes.insert_one(new_recipe)
     return redirect(url_for('my_recipes', username=session['username'], num=1))
 
+
 # Removes a recipe from DB
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('my_recipes', username= session['username'], num=1)) 
+
 
 # Search by Dish Types
 @app.route('/search_dish/<dish_type>/page:<num>')
@@ -217,6 +229,7 @@ def search_dish(dish_type, num):
             recipes_per_page=recipes_per_page, count=dish_count, dishes=dishes.find(), 
             cuisines=cuisines.find(), users=users.find(), allergens=allergens.find())  
 
+
 # Search by Cuisine 
 @app.route('/search_cuisine/<cuisine_name>/page:<num>')
 def search_cuisine(cuisine_name, num):
@@ -236,6 +249,7 @@ def search_cuisine(cuisine_name, num):
             num=num, cuisine_name=cuisine_name,  skip_num=skip_num, total_pages=total_pages, 
             page_count=page_count, count=cuisine_count, cuisines=cuisines.find(), 
             dishes=dishes.find(), users=users.find(), allergens=allergens.find())
+
 
 # Search by Allergens
 @app.route('/search_allergen/<allergen_name>/page:<num>')

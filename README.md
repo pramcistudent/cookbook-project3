@@ -50,7 +50,7 @@ The front-end display and functionality uses HTML, CSS and JavaScript. The back-
 - delete my own recipes.
 - be able to log out.
 ### Design
-I received inspiration for the styling of my app from a website I came across called [**_A Basic Cook_**](http://www.abasiccook.com/). I thought the clean simplistic look of the site looked really modern and professional, so I wanted to reflect this in my own app.
+My inspiration for the styling of my app was from a website I came across called [**_A Basic Cook_**](http://www.abasiccook.com/). I thought the clean simplistic look of the site looked really modern and professional, so I wanted to reflect this in my own app.
 ### Wireframes
 I drew my wireframes using Powerpoint. I have different wireframes to show how to make my website/app responsive. The links to the files are below:
 - [Home - (Guest User / Sign Up / Sign In)](https://github.com/pramcistudent/cookbook-project3/blob/master/wireframes/home.PNG)
